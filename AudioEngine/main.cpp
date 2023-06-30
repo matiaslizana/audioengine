@@ -1,7 +1,7 @@
+#include <al.h>
 #include <alc.h>
 #include <iostream>
 #include "wavfile.h"
-#include <vector>
 
 int main()
 {
@@ -32,9 +32,10 @@ int main()
 	std::uint8_t channels;
 	std::int32_t sampleRate;
 	std::uint8_t bitsPerSample;
-	std::vector<char> soundData;
+	char* soundData;
 
-	soundData = WavFile::load_wav("resources/test.wav", channels, sampleRate, bitsPerSample);
+	ALsizei size;
+	soundData = WavFile::load_wav("resources/test.wav", channels, sampleRate, bitsPerSample, size);
 	if (!soundData)
 	{
 		std::cerr << "ERROR: Could not load wav" << std::endl;
@@ -51,8 +52,7 @@ int main()
 	ALuint buffer;
 	alGenBuffers(1, &buffer);
 
-	alBufferData(buffer, format, soundData.data(), soundData.size(), sampleRate);
-	soundData.clear();
+	alBufferData(buffer, format, soundData, size, sampleRate);
 
 	ALuint source;
 	alGenSources(1, &source);

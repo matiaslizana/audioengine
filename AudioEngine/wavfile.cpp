@@ -131,7 +131,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 	return true;
 }
 
-char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample)
+char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
 {
 	std::ifstream in(filename, std::ios::binary);
 	if (!in.is_open())
@@ -140,7 +140,6 @@ char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std
 		return nullptr;
 	}
 
-	ALsizei size;
 	if (!load_wav_file_header(in, channels, sampleRate, bitsPerSample, size))
 	{
 		std::cerr << "ERROR: Could not load wav header of \"" << filename << "\"" << std::endl;
@@ -169,6 +168,7 @@ bool WavFile::format(uint8_t channels, uint8_t bitsPerSample, ALenum& format)
 			<< "ERROR: unrecognised wave format: "
 			<< channels << " channels, "
 			<< bitsPerSample << " bps" << std::endl;
-		return 0;
+		return false;
 	}
+	return true;
 }
