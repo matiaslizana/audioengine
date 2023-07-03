@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioEngine", "AudioEngine.vcxproj", "{17EF636A-91B3-461E-9AD9-4BB302F938B7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "..\GameEngine\GameEngine.vcxproj", "{936908A5-0885-4BDC-A9EA-44875A4CAB77}"
+	ProjectSection(ProjectDependencies) = postProject
+		{17EF636A-91B3-461E-9AD9-4BB302F938B7} = {17EF636A-91B3-461E-9AD9-4BB302F938B7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
