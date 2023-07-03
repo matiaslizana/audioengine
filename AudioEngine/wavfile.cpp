@@ -1,5 +1,12 @@
 #include "wavfile.h"
 
+std::int32_t WavFile::convert_to_int(char* buffer, std::size_t len)
+{
+	std::int32_t a = 0;
+	std::memcpy(&a, buffer, len);
+	return a;
+}
+
 bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
 {
 	char buffer[4];
@@ -64,7 +71,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 		std::cerr << "ERROR: could not read number of channels" << std::endl;
 		return false;
 	}
-	channels = atoi(buffer);
+	channels = convert_to_int(buffer, 2);
 
 	//Sample rate
 	if (!file.read(buffer, 4))
@@ -72,7 +79,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 		std::cerr << "ERROR: could not read sample rate" << std::endl;
 		return false;
 	}
-	sampleRate = atoi(buffer);
+	sampleRate = convert_to_int(buffer, 4);
 
 	//(Sample Rate * BitsPerSample * Channels) / 8
 	if (!file.read(buffer, 4))
@@ -94,7 +101,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 		std::cerr << "ERROR: could not read beats per sample" << std::endl;
 		return false;
 	}
-	bitsPerSample = atoi(buffer);
+	bitsPerSample = convert_to_int(buffer, 2);
 
 	//Data chunk header
 	if (!file.read(buffer, 4))
@@ -114,7 +121,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 		std::cerr << "ERROR: could not read data chunk header" << std::endl;
 		return false;
 	}
-	size = atoi(buffer);
+	size = convert_to_int(buffer, 4);
 
 	if (file.eof())
 	{
