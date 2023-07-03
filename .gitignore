@@ -5,3 +5,6 @@
 /AudioEngine/.vs/AudioEngine/v17
 /.vs
 /AudioEngine/x64/Debug
+/GameEngine/Debug
+/GameEngine/x64/Debug
+/AudioEngine/Debug

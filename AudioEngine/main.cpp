@@ -35,19 +35,8 @@ int main()
 	char* soundData;
 
 	ALsizei size;
-	soundData = WavFile::load_wav("resources/test.wav", channels, sampleRate, bitsPerSample, size);
-	if (!soundData)
-	{
-		std::cerr << "ERROR: Could not load wav" << std::endl;
-		return 0;
-	}
-
 	ALenum format;
-	if (!WavFile::format(channels, bitsPerSample, format))
-	{
-		std::cerr << "ERROR: Could not recognize wav format" << std::endl;
-		return 0;
-	}
+	soundData = WavFile::load_wav("resources/test.wav", channels, sampleRate, bitsPerSample, size, format);
 
 	ALuint buffer;
 	alGenBuffers(1, &buffer);
