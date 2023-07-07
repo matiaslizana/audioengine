@@ -32,5 +32,8 @@
     <ClInclude Include="wavfile.h">
       <Filter>Header Files\tools</Filter>
     </ClInclude>
+    <ClInclude Include="portaudio.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
