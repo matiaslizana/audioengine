@@ -1,5 +1,10 @@
-#include "portaudio.h"
 #include <iostream>
+#include "Position.h"
+#include "AudioObject.h"
+#include "Mixer.h"
+#include "Position.h"
+#include "portaudio.h"
+
 
 typedef struct
 {
@@ -7,6 +12,7 @@ typedef struct
     float right_phase;
 }
 paTestData;
+
 static double DeltaSine = 0.f;
 static const double PI = 3.14159265358979323846;
 
@@ -42,8 +48,27 @@ static int patestCallback(const void* inputBuffer, void* outputBuffer,
     return 0;
 }
 
+
 int main()
 {
+    // =================================================================
+    // Setup Sources and objects
+    // =================================================================
+     
+    Position audioObjectPosition{ 1, 1 };
+    AudioObject* audioObject = new AudioObject(audioObjectPosition, "resources/test.wav");
+
+    Mixer mainOutput {};
+    Mixer channel1 {};
+    Mixer channel2 {};
+
+    mainOutput.AddMixerChannel(&channel1);
+    mainOutput.AddMixerChannel(&channel2);
+
+    // =================================================================
+    // Port Audio Setup
+    // =================================================================
+
 	std::cout << "Initilize Port Audio" << std::endl;
 	PaError err = Pa_Initialize();
     if (err != paNoError)
@@ -61,19 +86,23 @@ int main()
         44100,          /* sample rate */
         256,            /* frames per buffer */
         patestCallback, /* specify our custom callback */
-        &data);        /* pass our data through to callback */
+        &data      /* pass our data through to callback */
+    );       
 
     err = Pa_StartStream(stream);
     
-    if (err != paNoError)
-    {
-        std::cout << err << std::endl;
-    }
+    // =================================================================
+    // Port Audio Setup end
+
 
     Pa_Sleep(5 * 1000);
 
 
+    // =================================================================
+    // Port Audio TERMINATE 
     err = Pa_StopStream(stream);
     Pa_Terminate();
+    // =================================================================
+
 	return 0;
 }
