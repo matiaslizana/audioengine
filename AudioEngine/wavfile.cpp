@@ -7,7 +7,7 @@ std::int32_t WavFile::convert_to_int(char* buffer, std::size_t len)
 	return a;
 }
 
-bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
+bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, int32_t& size)
 {
 	char buffer[4];
 	if (!file.is_open())
@@ -138,7 +138,7 @@ bool WavFile::load_wav_file_header(std::ifstream& file,	std::uint8_t& channels, 
 	return true;
 }
 
-char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size, ALenum& sampleFormat)
+char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, int32_t& size, WavFormat& sampleFormat)
 {
 	std::ifstream in(filename, std::ios::binary);
 	if (!in.is_open())
@@ -171,16 +171,16 @@ char* WavFile::load_wav(const std::string& filename, std::uint8_t& channels, std
 	return data;
 }
 
-bool WavFile::format(uint8_t channels, uint8_t bitsPerSample, ALenum& format)
+bool WavFile::format(uint8_t channels, uint8_t bitsPerSample, WavFormat& format)
 {
 	if (channels == 1 && bitsPerSample == 8)
-		format = AL_FORMAT_MONO8;
+		format = MONO8;
 	else if (channels == 1 && bitsPerSample == 16)
-		format = AL_FORMAT_MONO16;
+		format = MONO16;
 	else if (channels == 2 && bitsPerSample == 8)
-		format = AL_FORMAT_STEREO8;
+		format = STEREO8;
 	else if (channels == 2 && bitsPerSample == 16)
-		format = AL_FORMAT_STEREO16;
+		format = STEREO16;
 	else
 	{
 		std::cerr
