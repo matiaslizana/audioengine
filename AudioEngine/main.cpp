@@ -1,5 +1,6 @@
 #include "AudioListener.h"
 #include "AudioObject.h"
+#include "Mixer.h"
 
 int main()
 {
@@ -8,6 +9,13 @@ int main()
 
 	Position audioObjectPosition{ 1, 1 };
 	AudioObject* audioObject = new AudioObject(listenerPosition, "resources/test.wav");
+
+	Mixer mainOutput {};
+	Mixer channel1 {};
+	Mixer channel2 {};
+
+	mainOutput.AddMixerChannel(&channel1);
+	mainOutput.AddMixerChannel(&channel2);
 
 	return 0;
 }
