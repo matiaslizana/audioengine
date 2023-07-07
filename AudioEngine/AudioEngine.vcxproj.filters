@@ -44,6 +44,7 @@
     <ClInclude Include="wavfile.h">
       <Filter>Header Files\tools</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="AudioObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,5 +68,10 @@
     <ResourceCompile Include="AudioEngine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+=======
+    <ClInclude Include="portaudio.h">
+      <Filter>Header Files\tools</Filter>
+    </ClInclude>
+>>>>>>> portaudiosetup
   </ItemGroup>
 </Project>
