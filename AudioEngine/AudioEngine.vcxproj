@@ -148,10 +148,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioListener.cpp" />
+    <ClCompile Include="AudioObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="wavfile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioListener.h" />
+    <ClInclude Include="AudioObject.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="wavfile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
