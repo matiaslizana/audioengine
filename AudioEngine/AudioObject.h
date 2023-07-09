@@ -5,9 +5,10 @@
 class AudioObject
 {
 private:
-	char* audioFile;
+	void* audioFile;
 	Position position;
 
 public:
 	AudioObject(Position position, std::string wavFile);
+	void* GetData();
 };

@@ -9,3 +9,5 @@ AudioObject::AudioObject(Position position, std::string wavFile) : position(posi
 	WavFormat sampleFormat;
 	audioFile = WavFile::load_wav(wavFile, channels, sampleRate, bitsPerSample, size, sampleFormat);
 }
+
+void* AudioObject::GetData() { return audioFile; }

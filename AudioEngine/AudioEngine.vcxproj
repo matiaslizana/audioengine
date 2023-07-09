@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioEngine.cpp" />
     <ClCompile Include="AudioListener.cpp" />
     <ClCompile Include="AudioObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="wavfile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioEngine.h" />
     <ClInclude Include="AudioListener.h" />
     <ClInclude Include="AudioObject.h" />
     <ClInclude Include="Common.h" />
