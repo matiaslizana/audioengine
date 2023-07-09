@@ -5,10 +5,13 @@
 class AudioObject
 {
 private:
-	void* audioFile;
 	Position position;
+	//TODO: void*? Who takes care of the size and storage? AudioEngine when initializing stream?
+	char* audioFile;
+	int32_t audioFileSize;
 
 public:
 	AudioObject(Position position, std::string wavFile);
-	void* GetData();
+	char* Data();
+	int32_t Size();
 };

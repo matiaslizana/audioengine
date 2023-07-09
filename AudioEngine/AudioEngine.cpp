@@ -1,5 +1,7 @@
 #include "AudioEngine.h"
 
+int AudioEngine::currentBufferFrame = 0;
+
 void AudioEngine::Initialize()
 {
     std::cout << "Initializing Audio Engine..." << std::endl;
@@ -26,7 +28,7 @@ void AudioEngine::OpenStream(PaStreamCallback* callback, void* userData)
         44100,          /* sample rate */
         256,            /* frames per buffer */
         callback,       /* specify our custom callback */
-        &userData       /* pass our data through to callback */
+        userData        /* pass our data through to callback */
     );
     if (result != paNoError)
     {
