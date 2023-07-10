@@ -1,6 +1,5 @@
 #include "AudioEngine.h"
-
-int AudioEngine::currentBufferFrame = 0;
+#include "../Components/AudioObject.h"
 
 void AudioEngine::Initialize()
 {
@@ -15,11 +14,10 @@ void AudioEngine::Initialize()
     std::cout << "Audio Engine Initialized!" << std::endl;
 }
 
-void AudioEngine::OpenStream(PaStreamCallback* callback, void* userData)
+void AudioEngine::OpenStream(void* userData)
 {
     PaError result;
 
-    //Opens Default Stream
     result = Pa_OpenDefaultStream(
         &stream,        /* passes back stream pointer */
         0,              /* no input channels */
@@ -27,7 +25,7 @@ void AudioEngine::OpenStream(PaStreamCallback* callback, void* userData)
         paFloat32,      /* 32 bit floating point output */
         44100,          /* sample rate */
         256,            /* frames per buffer */
-        callback,       /* specify our custom callback */
+        StreamCallback, /* specify our custom callback */
         userData        /* pass our data through to callback */
     );
     if (result != paNoError)
@@ -53,4 +51,20 @@ void AudioEngine::Terminate()
     {
         std::cout << result << std::endl;
     }
+}
+
+int StreamCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
+{
+    //TODO: Change that for a group of AudioObjects later or AudioMixer (we discuss)
+    AudioObject* audioObject = (AudioObject*)userData;
+    if (!audioObject->IsPlaying())
+    {
+        return 0;
+    }
+
+    AudioFile<float> audioFile = audioObject->audioFile;
+    float* out = (float*)outputBuffer;
+    audioObject->Process(out, framesPerBuffer);
+
+    return 0;
 }

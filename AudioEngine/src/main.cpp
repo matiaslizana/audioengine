@@ -7,35 +7,7 @@
 #include "../libs/AudioFile.h"
 #include <Windows.h>
 
-int patestCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
-{
-    AudioObject* audioObject = (AudioObject*)userData;
-    AudioFile<float> audioFile = audioObject->audioFile;
-    int numChannels = audioFile.getNumChannels();
-    int numSamples = audioFile.getNumSamplesPerChannel();
-    float* out = (float*)outputBuffer;
-    //QUESTION: Why is framesPerBuffer unsigned long?
-    unsigned long currentBufferFrame = AudioEngine::currentBufferFrame;
-    unsigned long endBufferFrame = currentBufferFrame + framesPerBuffer;
 
-    for (int c = 0; c < numChannels; c++)
-    {
-        for (unsigned long i = 0; i < framesPerBuffer; i++)
-        {
-            if (currentBufferFrame < numSamples - framesPerBuffer)
-            {
-                out[(i * 2) + c] = audioFile.samples[c][currentBufferFrame + i];
-            }
-            else
-            {
-                out[i] = 0;
-            }
-        }
-    }
-    AudioEngine::currentBufferFrame = endBufferFrame;
-
-    return 0;
-}
 
 int main()
 {
@@ -56,7 +28,7 @@ int main()
     //Audio Engine Setup
 
     audioEngine.Initialize();
-    audioEngine.OpenStream(patestCallback, &audioObject);
+    audioEngine.OpenStream(&audioObject);
 
     bool keyPressed = false;
     while (true)
@@ -65,7 +37,7 @@ int main()
         {
             if (!keyPressed)
             {
-                std::cout << "Hola!" << std::endl;
+                audioObject.Play();
                 keyPressed = true;
             }
         }
