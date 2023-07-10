@@ -1,7 +1,7 @@
 #include "AudioObject.h"
 
-AudioObject::AudioObject(Position position, std::string wavFile, bool isLoop) 
-	: position(position), isLoop(isLoop), isPlaying(false), currentSample(0)
+AudioObject::AudioObject(Position position, std::string wavFile, Mixer* channel, bool isLoop) 
+	: position(position), channel(channel), isLoop(isLoop), isPlaying(false), currentSample(0)
 {
 	audioFile.load(wavFile);
 }
@@ -30,7 +30,7 @@ void AudioObject::Process(float* out, int numSamples)
 {
     for (int c = 0; c < audioFile.getNumChannels(); c++)
     {
-        for (unsigned long i = 0; i < numSamples; i++)
+        for (int i = 0; i < numSamples; i++)
         {
             if (currentSample < audioFile.getNumSamplesPerChannel() - numSamples)
             {

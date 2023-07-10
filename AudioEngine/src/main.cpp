@@ -7,7 +7,10 @@
 #include "../libs/AudioFile.h"
 #include <Windows.h>
 
+void TryPlayAudioObject(bool &keyPressed, char key, AudioObject &audioObject)
+{
 
+}
 
 int main()
 {
@@ -15,15 +18,18 @@ int main()
      
     AudioEngine audioEngine;
     
-    Position audioObjectPosition { 1, 1 };
-    AudioObject audioObject { audioObjectPosition, "resources/test.wav" };
-
     Mixer mainOutput {};
     Mixer channel1 {};
     Mixer channel2 {};
 
     mainOutput.AddMixerChannel(&channel1);
     mainOutput.AddMixerChannel(&channel2);
+
+    Position audioObjectPosition{ 0, 0 };
+    AudioObject audioObject { audioObjectPosition, "resources/test.wav", &channel1 };
+
+    Position audioObject2Position{ 0, 0 };
+    AudioObject audioObject2 { audioObject2Position, "resources/test2.wav", &channel2 };
 
     //Audio Engine Setup
 
@@ -33,11 +39,22 @@ int main()
     bool keyPressed = false;
     while (true)
     {
-        if (GetKeyState('A') & 0x8000)/*Check if high-order bit is set (1 << 15)*/
+        if (GetKeyState('A') < 0)/*Check if high-order bit is set (1 << 15)*/
         {
             if (!keyPressed)
             {
                 audioObject.Play();
+                keyPressed = true;
+            }
+        }
+        else
+            keyPressed = false;
+
+        if (GetKeyState('B') < 0)/*Check if high-order bit is set (1 << 15)*/
+        {
+            if (!keyPressed)
+            {
+                audioObject2.Play();
                 keyPressed = true;
             }
         }
