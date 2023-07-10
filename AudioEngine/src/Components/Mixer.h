@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "AudioObject.h"
-#include "Common.h"
+#include "../Common/Common.h"
 
 class Mixer
 {

@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Common\Position.cpp" />
+    <ClCompile Include="src\Components\AudioListener.cpp" />
+    <ClCompile Include="src\Components\AudioObject.cpp" />
+    <ClCompile Include="src\Components\Mixer.cpp" />
+    <ClCompile Include="src\Engine\AudioEngine.cpp" />
+    <ClCompile Include="src\Extra\wavfile.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs\AudioFile.h" />
+    <ClInclude Include="libs\portaudio.h" />
+    <ClInclude Include="src\Common\Common.h" />
+    <ClInclude Include="src\Common\Position.h" />
+    <ClInclude Include="src\Components\AudioListener.h" />
+    <ClInclude Include="src\Components\AudioObject.h" />
+    <ClInclude Include="src\Components\Mixer.h" />
+    <ClInclude Include="src\Engine\AudioEngine.h" />
+    <ClInclude Include="src\Extra\wavfile.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -88,13 +108,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>.\libs;C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies);portaudio.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -106,7 +126,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -124,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -142,6 +162,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.\libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -149,32 +170,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>.\libs;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);portaudio.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);portaudio.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="AudioEngine.cpp" />
-    <ClCompile Include="AudioListener.cpp" />
-    <ClCompile Include="AudioObject.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mixer.cpp" />
-    <ClCompile Include="Position.cpp" />
-    <ClCompile Include="wavfile.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AudioEngine.h" />
-    <ClInclude Include="AudioListener.h" />
-    <ClInclude Include="AudioObject.h" />
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="Mixer.h" />
-    <ClInclude Include="Position.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="wavfile.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="AudioEngine.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

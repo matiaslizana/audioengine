@@ -1,14 +1,16 @@
 #include <iostream>
-#include "AudioObject.h"
-#include "Mixer.h"
-#include "Position.h"
+#include "Components/AudioObject.h"
+#include "Components/Mixer.h"
+#include "Common/Position.h"
 #include "portaudio.h"
-#include "AudioEngine.h"
+#include "Engine/AudioEngine.h"
+#include "../libs/AudioFile.h"
 
 int patestCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
 {
     AudioObject* audioObject = (AudioObject*)userData;
-    char* audioData = audioObject->Data();
+    AudioFile<float>::AudioBuffer audioData = audioObject->audioFile.samples;
+    int numChannels = audioObject->audioFile.getNumChannels();
     float* out = (float*)outputBuffer;
     //QUESTION: Why is framesPerBuffer unsigned long?
     unsigned long currentBufferFrame = AudioEngine::currentBufferFrame;
@@ -19,7 +21,10 @@ int patestCallback(const void* inputBuffer, void* outputBuffer, unsigned long fr
     //QUESTION: How to convert 4 bytes char into a float? Does outputBuffer need to be float?
     for (unsigned long i = 0; i < framesPerBuffer; i++)
     {
-        out[i] = audioData[currentBufferFrame + i];
+        for (size_t c = 0; c < numChannels; i++)
+        {
+            out[i] = audioData[c][currentBufferFrame + i];
+        }
     }
     AudioEngine::currentBufferFrame = endBufferFrame;
 

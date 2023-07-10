@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Common\Position.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\AudioListener.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\AudioObject.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Mixer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\AudioEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Extra\wavfile.cpp">
+      <Filter>Extra</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs\AudioFile.h">
+      <Filter>Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\portaudio.h">
+      <Filter>Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Common\Position.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\AudioListener.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\AudioObject.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Mixer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\AudioEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Extra\wavfile.h">
+      <Filter>Extra</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{a71abf26-72dc-4450-8637-b8eebb3d48df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{bc9b9907-e827-4dee-a8f6-80ec32247054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Extra">
+      <UniqueIdentifier>{c10fc741-6cd1-47d7-9834-fa96379abcfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{cf7cfc48-35ca-438e-ae9c-490c7ff3e2bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{31a50cbf-25ec-4574-99f3-6a5084a8e0b9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
