@@ -1,7 +1,7 @@
 #pragma once
 #include "../Common/Position.h"
 #include "../Components/Mixer.h"
-#include "../libs/AudioFile.h"
+#include "AudioFile.h"
 #include <string>
 
 class AudioObject

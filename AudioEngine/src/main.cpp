@@ -4,7 +4,7 @@
 #include "Common/Position.h"
 #include "portaudio.h"
 #include "Engine/AudioEngine.h"
-#include "../libs/AudioFile.h"
+#include "AudioFile.h"
 #include <Windows.h>
 
 void TryPlayAudioObject(bool &keyPressed, char key, AudioObject &audioObject)

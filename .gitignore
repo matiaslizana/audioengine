@@ -4,9 +4,15 @@
 
 /AudioEngine/.vs/AudioEngine/v17
 /.vs
-/AudioEngine/x64/Debug
+/x64/Debug
+/x64/Release
 /AudioEngine/Debug
+/AudioEngine/Release
+/AudioEngine/x64/Debug
+/AudioEngine/x64/Release
 /AudioEngine/.vs
 /GameEngine/Debug
+/GameEngine/Release
 /GameEngine/x64/Debug
+/GameEngine/x64/Release
 /GameEngine/.vs
