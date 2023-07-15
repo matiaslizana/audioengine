@@ -62,7 +62,8 @@ void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned 
 {
     //TODO: Change that for a group of AudioObjects later or AudioMixer (we discuss)
 
-    sineTone.GenerateTestTone(mixOutputBuffer);
+    //sineTone.GenerateTestTone(mixOutputBuffer);
+    mainMixer.Process(mixOutputBuffer);
 
     float* outBuffer = reinterpret_cast<float*>(outputBuffer);
     if (outBuffer == nullptr)

@@ -34,6 +34,6 @@ void Mixer::Process(std::array<float, STANDARD_TEMP_BUFFER_SIZE>& outBuffer)
 
 	for (int i = 0; i < STANDARD_TEMP_BUFFER_SIZE; ++i)
 	{
-		outBuffer[i] = tempBuffer[i];
+		outBuffer[i] += tempBuffer[i] * volume;
 	}
 }

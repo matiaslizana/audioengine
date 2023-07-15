@@ -19,5 +19,5 @@ public:
 	void Play();
 	void Stop();
 	void Pause();
-	void Process(float* out, int numSamples);
+	void Process(std::array<float, 512>, int numSamples);
 };
