@@ -17,6 +17,8 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 		position.y -= velocity;
 	if (code == sf::Keyboard::Down)
 		position.y += velocity;
+	
+	//if (code == sf::Keyboard::Space)
 
 	sprite.setPosition(position);
 }
