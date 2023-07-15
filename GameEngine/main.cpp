@@ -8,15 +8,20 @@ int main()
     //TODO: Make Render a singleton?
     sf::RenderWindow window(sf::VideoMode(800, 600), "Alien Game");
 
+    //TODO: Move this into a GameEngine class?
+    std::vector<GameObject*> gameObjects {};
+
     Input input {};
 
     Player player {};
     player.SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     player.GetSprite().setPosition(400, 300);
-    
+    gameObjects.push_back(&player);
+
     Weapon weapon {};
     weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
     weapon.GetSprite().setPosition(100, 100);
+    gameObjects.push_back(&weapon);
 
     //Subscribe players to input (action, instance, num of parameters)
     input.Subscribe(std::bind(&Player::OnEventFired, &player, std::placeholders::_1));
@@ -26,8 +31,8 @@ int main()
     {
         input.PollEvent(window);
         window.clear(sf::Color::Black);
-        player.Render(window);
-        weapon.Render(window);
+        for (int i = 0; i < gameObjects.size(); i++)
+            gameObjects[i]->Render(window);
         window.display();
     }
 
