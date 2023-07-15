@@ -16,5 +16,7 @@ public:
 	GameObject();
 	void SetTexture(std::string texturePath, sf::IntRect rect);
 	sf::Sprite& GetSprite();
-	void Render(sf::RenderWindow& renderWindow);
+	virtual void Render(sf::RenderWindow& renderWindow);
+	void SetPosition(sf::Vector2f position);
+	sf::Vector2f GetPosition();
 };
