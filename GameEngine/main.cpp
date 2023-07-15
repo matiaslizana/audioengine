@@ -2,44 +2,29 @@
 #include "Player.hpp"
 #include "Input.h"
 #include "Weapon.h"
+#include "GameEngine.h"
 
 int main()
 {
-    //TODO: Make Render a singleton?
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Alien Game");
+    //TODO: Make GameEngine a singleton
+    GameEngine gameEngine{};
 
-    //TODO: Move this into a GameEngine class?
-    std::vector<GameObject*> gameObjects {};
-
-    Input input {};
-
+    //TODO: Move this into scripted data (Lua?)
     Player player {};
     player.SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     player.GetSprite().setPosition(400, 300);
     player.GetSprite().setScale(-1.f, 1.f);
     player.GetSprite().setOrigin(8, 8);
-    gameObjects.push_back(&player);
+    gameEngine.AddGameObject(&player);
+    gameEngine.SubscribeInput(&player);
 
     Weapon weapon {};
     weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
-    gameObjects.push_back(&weapon);
-
-    //246, 54, 4, 4
-
+    gameEngine.AddGameObject(&weapon);
     player.AssignWeapon(&weapon);
-
-    //Subscribe players to input (action, instance, num of parameters)
-    input.Subscribe(std::bind(&Player::OnEventFired, &player, std::placeholders::_1));
-
-    // run the program as long as the window is open
-    while (window.isOpen())
-    {
-        input.PollEvent(window);
-        window.clear(sf::Color::Black);
-        for (int i = 0; i < gameObjects.size(); i++)
-            gameObjects[i]->Render(window);
-        window.display();
-    }
+    
+    //Bullet: 246, 54, 4, 4  
+    gameEngine.Init();
 
     return 0;
 }
