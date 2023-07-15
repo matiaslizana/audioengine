@@ -43,7 +43,10 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 	if (code == sf::Keyboard::Down)
 		position.y += velocity;
 	
-	//if (code == sf::Keyboard::Space)
+	if (code == sf::Keyboard::Space)
+	{
+		//Instantiate bullet
+	}
 
 	sprite.setPosition(position);
 }

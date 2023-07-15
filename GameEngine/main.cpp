@@ -24,6 +24,8 @@ int main()
     weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
     gameObjects.push_back(&weapon);
 
+    //246, 54, 4, 4
+
     player.AssignWeapon(&weapon);
 
     //Subscribe players to input (action, instance, num of parameters)
