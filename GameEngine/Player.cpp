@@ -1,4 +1,8 @@
 #include "Player.hpp"
+#include "GameEngine.h"
+#include "Singleton.h"
+
+extern Singleton<GameEngine> gameEngine;
 
 Player::Player() : velocity(0.05f), weapon{}, weaponOffset(0,0), lastDirectionLeft(false)
 {
@@ -45,7 +49,13 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 	
 	if (code == sf::Keyboard::Space)
 	{
-		//Instantiate bullet
+		//QUESTION: Objects need to be created inside the game engine (to keep the reference there)
+		//Do we need to create a templated version for GameObject derived classes?
+		//Or maybe classes should not derive from GameObject, and have like a component based behavior as unity? How can we do that?
+		/*
+		Bullet bullet{ velocity };
+		gameEngine.Instance().AddGameObject(&bullet);
+		*/
 	}
 
 	sprite.setPosition(position);

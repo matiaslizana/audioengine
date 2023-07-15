@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
 #include "Weapon.h"
+#include "Bullet.h"
 
 class Player : public GameObject
 {

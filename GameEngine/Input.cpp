@@ -20,6 +20,8 @@ void Input::PollEvent(sf::RenderWindow& renderWindow)
         FireEvent(sf::Keyboard::Up);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         FireEvent(sf::Keyboard::Down);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        FireEvent(sf::Keyboard::Space);
 }
 
 void Input::Subscribe(const std::function<void(sf::Keyboard::Key)>& handler)
