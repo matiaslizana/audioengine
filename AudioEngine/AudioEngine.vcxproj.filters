@@ -20,6 +20,9 @@
     <ClCompile Include="src\Extra\wavfile.cpp">
       <Filter>Extra</Filter>
     </ClCompile>
+    <ClCompile Include="SineToneGenerator.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\AudioFile.h">
@@ -48,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="src\Extra\wavfile.h">
       <Filter>Extra</Filter>
+    </ClInclude>
+    <ClInclude Include="SineToneGenerator.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 #pragma once
 #include "../Common/Position.h"
-#include "../Components/Mixer.h"
 #include "AudioFile.h"
 #include <string>
 
@@ -10,13 +9,12 @@ private:
 	Position position;
 	bool isLoop;
 	int currentSample;
-	Mixer* channel;
 	bool isPlaying;
 
 public:
 	AudioFile<float> audioFile;
 
-	AudioObject(Position position, std::string wavFile, Mixer* channel, bool isLoop = false);
+	AudioObject(Position position, std::string wavFile, bool isLoop = false);
 	bool IsPlaying();
 	void Play();
 	void Stop();

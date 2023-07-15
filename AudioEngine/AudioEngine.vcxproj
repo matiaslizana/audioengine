@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SineToneGenerator.cpp" />
     <ClCompile Include="src\Common\Position.cpp" />
     <ClCompile Include="src\Components\AudioListener.cpp" />
     <ClCompile Include="src\Components\AudioObject.cpp" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="libs\AudioFile.h" />
     <ClInclude Include="libs\portaudio.h" />
+    <ClInclude Include="SineToneGenerator.h" />
     <ClInclude Include="src\Common\Common.h" />
     <ClInclude Include="src\Common\Position.h" />
     <ClInclude Include="src\Components\AudioListener.h" />

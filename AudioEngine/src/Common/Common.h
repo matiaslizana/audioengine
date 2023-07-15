@@ -1,4 +1,4 @@
 #pragma once
 #include <cstdint>
 
-typedef int32_t Volume;
+typedef float Volume;

@@ -1,6 +1,11 @@
 #include "AudioEngine.h"
 #include "../Components/AudioObject.h"
 
+constexpr int NUM_OF_CHANNELS = 2;
+constexpr int SAMPLE_RATE = 44100;
+constexpr int BUFFER_SIZE = 512;
+constexpr int BUFFER_SIZE_TOTAL = NUM_CHANNELS * BUFFER_SIZE;
+
 void AudioEngine::Initialize()
 {
     std::cout << "Initializing Audio Engine..." << std::endl;
@@ -21,12 +26,12 @@ void AudioEngine::OpenStream(void* userData)
     result = Pa_OpenDefaultStream(
         &stream,        /* passes back stream pointer */
         0,              /* no input channels */
-        2,              /* stereo output */
+        NUM_CHANNELS,              /* stereo output */
         paFloat32,      /* 32 bit floating point output */
-        44100,          /* sample rate */
-        256,            /* frames per buffer */
-        StreamCallback, /* specify our custom callback */
-        userData        /* pass our data through to callback */
+        SAMPLE_RATE,          /* sample rate */
+        BUFFER_SIZE,            /* frames per buffer */
+        ProcessCallback, /* specify our custom callback */
+        this        /* pass our data through to callback */
     );
     if (result != paNoError)
     {
@@ -53,18 +58,34 @@ void AudioEngine::Terminate()
     }
 }
 
-int StreamCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
+void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags)
 {
     //TODO: Change that for a group of AudioObjects later or AudioMixer (we discuss)
-    AudioObject* audioObject = (AudioObject*)userData;
-    if (!audioObject->IsPlaying())
-    {
-        return 0;
-    }
 
-    AudioFile<float> audioFile = audioObject->audioFile;
-    float* out = (float*)outputBuffer;
-    audioObject->Process(out, framesPerBuffer);
+    sineTone.GenerateTestTone(mixOutputBuffer);
+
+    float* outBuffer = reinterpret_cast<float*>(outputBuffer);
+    if (outBuffer == nullptr)
+        return;
+
+    int writePosition = 0;
+    int readPosition = 0;
+    while (writePosition < BUFFER_SIZE_TOTAL)
+    {
+        outBuffer[writePosition++] = mixOutputBuffer[readPosition];
+        outBuffer[writePosition++] = mixOutputBuffer[readPosition];
+
+        ++readPosition;
+    }
+}
+
+int ProcessCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
+{
+
+    AudioEngine* audioEngine = reinterpret_cast<AudioEngine*>(userData);
+    if (audioEngine)
+        audioEngine->Process(inputBuffer, outputBuffer, framesPerBuffer, timeInfo, statusFlags);
 
     return 0;
 }
+

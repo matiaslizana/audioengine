@@ -1,7 +1,7 @@
 #include "AudioObject.h"
 
-AudioObject::AudioObject(Position position, std::string wavFile, Mixer* channel, bool isLoop) 
-	: position(position), channel(channel), isLoop(isLoop), isPlaying(false), currentSample(0)
+AudioObject::AudioObject(Position position, std::string wavFile, bool isLoop) 
+	: position(position), isLoop(isLoop), isPlaying(false), currentSample(0)
 {
 	audioFile.load(wavFile);
 }
