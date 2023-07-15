@@ -8,6 +8,8 @@ class GameObject
 {
 private:
 	sf::Texture texture;
+
+protected:
 	sf::Sprite sprite;
 
 public:
