@@ -18,3 +18,16 @@ sf::Sprite& GameObject::GetSprite()
 {
 	return sprite;
 }
+
+void GameObject::Render(sf::RenderWindow& renderWindow)
+{
+	renderWindow.draw(sprite);
+}
+
+//DISCUSS: What is better? Maybe that's only for convenience functions, but not for basic ones
+/*
+void Render(GameObject& gameObject, sf::RenderWindow& renderWindow)
+{
+	renderWindow.draw(gameObject.GetSprite());
+}
+*/
