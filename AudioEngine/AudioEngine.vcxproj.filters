@@ -20,7 +20,10 @@
     <ClCompile Include="src\Extra\wavfile.cpp">
       <Filter>Extra</Filter>
     </ClCompile>
-    <ClCompile Include="SineToneGenerator.cpp">
+    <ClCompile Include="src\Tools\SineToneGenerator.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\FrameBuffer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,7 +55,13 @@
     <ClInclude Include="src\Extra\wavfile.h">
       <Filter>Extra</Filter>
     </ClInclude>
-    <ClInclude Include="SineToneGenerator.h">
+    <ClInclude Include="AudioEngineSettings.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\SineToneGenerator.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\FrameBuffer.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,6 +80,9 @@
     </Filter>
     <Filter Include="Libs">
       <UniqueIdentifier>{31a50cbf-25ec-4574-99f3-6a5084a8e0b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{ad60451b-a654-4631-b910-f16a945a3a2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

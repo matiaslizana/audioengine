@@ -2,19 +2,15 @@
 #include <iostream>
 #include "portaudio.h"
 #include "../Components/Mixer.h"
-#include "../../SineToneGenerator.h"
-
-constexpr int NUM_CHANNELS = 2;
-constexpr int NUM_SAMPLES = 512;
-constexpr int TEMP_BUFFER_SIZE = NUM_CHANNELS * NUM_SAMPLES;
+#include "AudioEngineSettings.h"
+#include "../Components/FrameBuffer.h"
 
 class AudioEngine
 {
 private:
 	PaStream* stream;
 	Mixer mainMixer;
-	std::array<float, TEMP_BUFFER_SIZE> mixOutputBuffer;
-	SineToneGenerator sineTone;
+	FrameBuffer mixOutputBuffer {};
 
 public:
 	void Initialize();

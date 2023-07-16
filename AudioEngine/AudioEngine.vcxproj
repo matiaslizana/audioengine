@@ -19,26 +19,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SineToneGenerator.cpp" />
     <ClCompile Include="src\Common\Position.cpp" />
     <ClCompile Include="src\Components\AudioListener.cpp" />
     <ClCompile Include="src\Components\AudioObject.cpp" />
+    <ClCompile Include="src\Components\FrameBuffer.cpp" />
     <ClCompile Include="src\Components\Mixer.cpp" />
     <ClCompile Include="src\Engine\AudioEngine.cpp" />
     <ClCompile Include="src\Extra\wavfile.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Tools\SineToneGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioEngineSettings.h" />
     <ClInclude Include="libs\AudioFile.h" />
     <ClInclude Include="libs\portaudio.h" />
-    <ClInclude Include="SineToneGenerator.h" />
     <ClInclude Include="src\Common\Common.h" />
     <ClInclude Include="src\Common\Position.h" />
     <ClInclude Include="src\Components\AudioListener.h" />
     <ClInclude Include="src\Components\AudioObject.h" />
+    <ClInclude Include="src\Components\FrameBuffer.h" />
     <ClInclude Include="src\Components\Mixer.h" />
     <ClInclude Include="src\Engine\AudioEngine.h" />
     <ClInclude Include="src\Extra\wavfile.h" />
+    <ClInclude Include="src\Tools\SineToneGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

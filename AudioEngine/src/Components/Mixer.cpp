@@ -1,4 +1,5 @@
 #include "Mixer.h"
+#include "AudioObject.h"
 
 Mixer::Mixer() : childMixers(), volume(0)
 {
@@ -20,8 +21,12 @@ Volume Mixer::Mix()
 	return volume;
 }
 
-void Mixer::Process(std::array<float, STANDARD_TEMP_BUFFER_SIZE>& outBuffer)
+void Mixer::Process(FrameBuffer& outBuffer)
 {
+	tempBuffer.Reset();
+	const int numOfChannels = outBuffer.GetNumOfChannels();
+	const int bufferSize = outBuffer.GetBufferSize();
+
 	for (int i = 0; i < childMixers.size(); ++i)
 	{
 		childMixers[i].Process(tempBuffer);
@@ -31,9 +36,7 @@ void Mixer::Process(std::array<float, STANDARD_TEMP_BUFFER_SIZE>& outBuffer)
 	{
 		
 	}
-
-	for (int i = 0; i < STANDARD_TEMP_BUFFER_SIZE; ++i)
-	{
-		outBuffer[i] += tempBuffer[i] * volume;
-	}
+	
+	sineTone.GenerateTestTone(tempBuffer);
+	outBuffer.AddBlock(tempBuffer);
 }

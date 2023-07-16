@@ -2,6 +2,7 @@
 #include "../Common/Position.h"
 #include "AudioFile.h"
 #include <string>
+#include "Mixer.h"
 
 class AudioObject
 {
@@ -10,6 +11,7 @@ private:
 	bool isLoop;
 	int currentSample;
 	bool isPlaying;
+	Mixer* outputMixer;
 
 public:
 	AudioFile<float> audioFile;
@@ -19,5 +21,5 @@ public:
 	void Play();
 	void Stop();
 	void Pause();
-	void Process(std::array<float, 512>, int numSamples);
+	void Process(float* out, int numSamples);
 };

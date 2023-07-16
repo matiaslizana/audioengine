@@ -2,7 +2,10 @@
 #include <vector>
 #include <array>
 #include "../Common/Common.h"
-#include "../Components/AudioObject.h"
+#include "../Components/Framebuffer.h"
+#include "../Tools/SineToneGenerator.h"
+
+class AudioObject;
 
 constexpr int STANDARD_NUM_CHANNELS = 2;
 constexpr int STANDARD_BUFFER_SIZE = 512;
@@ -15,10 +18,11 @@ private:
 	std::vector<AudioObject> audioObjects;
 	Volume Mix();
 	Volume volume;
-	std::array<float, STANDARD_TEMP_BUFFER_SIZE> tempBuffer;
+	FrameBuffer tempBuffer {};
+	SineToneGenerator sineTone {};
 
 public:
 	Mixer();
 	void AddChildMixer(Mixer mixerChannel);
-	void Process(std::array<float, STANDARD_TEMP_BUFFER_SIZE>& outBuffer);
+	void Process(FrameBuffer& outBuffer);
 };

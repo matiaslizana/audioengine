@@ -1,10 +1,7 @@
 #include "AudioEngine.h"
 #include "../Components/AudioObject.h"
+#include "AudioEngineSettings.h"
 
-constexpr int NUM_OF_CHANNELS = 2;
-constexpr int SAMPLE_RATE = 44100;
-constexpr int BUFFER_SIZE = 512;
-constexpr int BUFFER_SIZE_TOTAL = NUM_CHANNELS * BUFFER_SIZE;
 
 void AudioEngine::Initialize()
 {
@@ -33,6 +30,7 @@ void AudioEngine::OpenStream(void* userData)
         ProcessCallback, /* specify our custom callback */
         this        /* pass our data through to callback */
     );
+
     if (result != paNoError)
     {
         std::cout << result << std::endl;
@@ -58,11 +56,12 @@ void AudioEngine::Terminate()
     }
 }
 
-void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags)
+void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, 
+                          const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags)
 {
     //TODO: Change that for a group of AudioObjects later or AudioMixer (we discuss)
+    mixOutputBuffer.Reset();
 
-    //sineTone.GenerateTestTone(mixOutputBuffer);
     mainMixer.Process(mixOutputBuffer);
 
     float* outBuffer = reinterpret_cast<float*>(outputBuffer);
@@ -73,14 +72,16 @@ void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned 
     int readPosition = 0;
     while (writePosition < BUFFER_SIZE_TOTAL)
     {
-        outBuffer[writePosition++] = mixOutputBuffer[readPosition];
-        outBuffer[writePosition++] = mixOutputBuffer[readPosition];
-
-        ++readPosition;
+        for (int i = 0; i < NUM_CHANNELS; ++i)
+        {
+			outBuffer[writePosition++] = mixOutputBuffer.GetSample(readPosition, i);
+        }
+		++readPosition;
     }
 }
 
-int ProcessCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
+int ProcessCallback(const void* inputBuffer, void* outputBuffer, unsigned long framesPerBuffer, 
+                    const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags, void* userData)
 {
 
     AudioEngine* audioEngine = reinterpret_cast<AudioEngine*>(userData);
