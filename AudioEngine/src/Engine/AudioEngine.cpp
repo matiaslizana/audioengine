@@ -60,6 +60,8 @@ void AudioEngine::Process(const void* inputBuffer, void* outputBuffer, unsigned 
                           const PaStreamCallbackTimeInfo* timeInfo, PaStreamCallbackFlags statusFlags)
 {
     //TODO: Change that for a group of AudioObjects later or AudioMixer (we discuss)
+    //Chris: Trying the structure setup here with having mixers calling process to see how that works.
+
     mixOutputBuffer.Reset();
 
     mainMixer.Process(mixOutputBuffer);
