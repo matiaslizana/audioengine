@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include "BoxCollider.h"
 
 GameEngine::GameEngine() : input{}, window(sf::VideoMode(800, 600), "Alien Game")
 {
@@ -12,6 +13,10 @@ void GameEngine::Init()
 		window.clear(sf::Color::Black);
 		for (int i = 0; i < gameObjects.size(); i++)
 			gameObjects[i]->Render(window);
+
+		BoxCollider b{ 25, 25, 50, 50 };
+		b.Draw(window);
+
 		window.display();
 	}
 }

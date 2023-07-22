@@ -4,6 +4,7 @@
 #include "Weapon.h"
 #include "GameEngine.h"
 #include "Singleton.h"
+#include "BoxCollider.h"
 
 Singleton<GameEngine> gameEngine;
 
@@ -22,6 +23,7 @@ int main()
     weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
     gameEngine.Instance().AddGameObject(&weapon);
     player.AssignWeapon(&weapon);
+    
     
     //Bullet: 246, 54, 4, 4  
     gameEngine.Instance().Init();

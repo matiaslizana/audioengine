@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AudioEngine", "AudioEngine\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{936908A5-0885-4BDC-A9EA-44875A4CAB77}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine_Tests", "GameEngine_Tests\GameEngine_Tests.vcxproj", "{40F8BD9B-ED52-4C23-9D83-1160A75C2989}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{936908A5-0885-4BDC-A9EA-44875A4CAB77}.Release|x64.Build.0 = Release|x64
 		{936908A5-0885-4BDC-A9EA-44875A4CAB77}.Release|x86.ActiveCfg = Release|Win32
 		{936908A5-0885-4BDC-A9EA-44875A4CAB77}.Release|x86.Build.0 = Release|Win32
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Debug|x64.ActiveCfg = Debug|x64
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Debug|x64.Build.0 = Debug|x64
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Debug|x86.ActiveCfg = Debug|Win32
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Debug|x86.Build.0 = Debug|Win32
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Release|x64.ActiveCfg = Release|x64
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Release|x64.Build.0 = Release|x64
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Release|x86.ActiveCfg = Release|Win32
+		{40F8BD9B-ED52-4C23-9D83-1160A75C2989}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
