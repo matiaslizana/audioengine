@@ -3,11 +3,13 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
+#include "BoxCollider.h"
 
 class GameObject
 {
 private:
 	sf::Texture texture;
+	BoxCollider collider;
 
 protected:
 	sf::Sprite sprite;

@@ -12,6 +12,7 @@ void GameObject::SetTexture(std::string texturePath, sf::IntRect rect)
 		std::cout << "Error loading texture " << texturePath << std::endl;
 	}
 	sprite.setTexture(texture);
+	collider.SetSize(sf::Vector2f {200.f, 200.f});
 }
 
 sf::Sprite& GameObject::GetSprite()
@@ -22,11 +23,15 @@ sf::Sprite& GameObject::GetSprite()
 void GameObject::Render(sf::RenderWindow& renderWindow)
 {
 	renderWindow.draw(sprite);
+#if(_DEBUG)
+	BoxCollider::DrawBoxCollider(collider, renderWindow);
+#endif
 }
 
 void GameObject::SetPosition(sf::Vector2f position)
 {
 	sprite.setPosition(position);
+	collider.SetPosition(position);
 }
 
 sf::Vector2f GameObject::GetPosition()

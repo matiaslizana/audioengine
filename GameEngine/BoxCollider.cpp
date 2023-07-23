@@ -1,12 +1,32 @@
 #include "BoxCollider.h"
 
-void BoxCollider::Draw(sf::RenderWindow& renderWindow)
+Bounds BoxCollider::GetBounds()
 {
-	sf::Vector2f position {	(float)boundingBox.center.x  + boundingBox.minPosition.x, 
-							(float) boundingBox.center.y + boundingBox.minPosition.y
+	return boundingBox;
+}
+
+void BoxCollider::SetPosition(sf::Vector2f position)
+{
+	const Vector v{static_cast<int>(position.x), static_cast<int>(position.y) };
+	boundingBox.SetPosition(v);
+}
+
+void BoxCollider::SetSize(sf::Vector2f size)
+{
+	const Vector v{static_cast<int>(size.x * 0.5f), static_cast<int>(size.y * 0.5f) };
+	boundingBox.SetExtends(v);
+}
+
+void BoxCollider::DrawBoxCollider(BoxCollider& boxCollider, sf::RenderWindow& renderWindow)
+{
+	Bounds bounds = boxCollider.GetBounds();
+	const Vector center = bounds.GetCenter();
+	const Vector extends = bounds.GetExtends();
+	sf::Vector2f position {	(float)(bounds.GetMinPosition().x),
+							(float)(bounds.GetMinPosition().y)
 						  };
 
-	sf::Vector2f size {(float)boundingBox.extends.x * 0.5f, (float) boundingBox.extends.y * 0.5f};
+	sf::Vector2f size {(float)extends.x * 0.5f, (float) extends.y * 0.5f};
 	sf::RectangleShape rect;
 
 	rect.setPosition(position);

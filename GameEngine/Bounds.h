@@ -4,21 +4,23 @@
 class Bounds
 {
 public:
-	Bounds() = delete;
+	Bounds() {};
 	Bounds(Vector center, Vector extends) : 
 		center(center), 
-		extends(extends), 
-		minPosition(center + (extends * -1)),
-		maxPosition(center + extends)
+		extends(extends)
 	{	
 	
 	}
 
 	bool Intersects(const Bounds& otherBounds);
-
+	void SetPosition(const Vector& position);
+	void SetExtends(const Vector& size);
 	Vector GetCenter();
 	Vector GetExtends();
+	Vector GetMinPosition();
+	Vector GetMaxPostition();
 
+private:
 	Vector center;
 	Vector extends;
 	Vector minPosition;
