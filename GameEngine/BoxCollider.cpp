@@ -7,7 +7,7 @@ Bounds BoxCollider::GetBounds()
 
 void BoxCollider::SetPosition(sf::Vector2f position)
 {
-	const Vector v{static_cast<int>(position.x), static_cast<int>(position.y) };
+	Vector v{static_cast<int>(position.x), static_cast<int>(position.y) };
 	boundingBox.SetPosition(v);
 }
 
@@ -26,7 +26,7 @@ void BoxCollider::DrawBoxCollider(BoxCollider& boxCollider, sf::RenderWindow& re
 							(float)(bounds.GetMinPosition().y)
 						  };
 
-	sf::Vector2f size {(float)extends.x * 0.5f, (float) extends.y * 0.5f};
+	sf::Vector2f size {(float)extends.x * 2, (float) extends.y * 2};
 	sf::RectangleShape rect;
 
 	rect.setPosition(position);

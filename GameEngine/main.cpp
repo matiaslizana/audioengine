@@ -19,10 +19,10 @@ int main()
     gameEngine.Instance().AddGameObject(&player);
     gameEngine.Instance().SubscribeInput(&player);
 
-    Weapon weapon {};
-    weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
-    gameEngine.Instance().AddGameObject(&weapon);
-    player.AssignWeapon(&weapon);
+    //Weapon weapon {};
+    //weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
+    //gameEngine.Instance().AddGameObject(&weapon);
+    //player.AssignWeapon(&weapon);
     
     
     //Bullet: 246, 54, 4, 4  

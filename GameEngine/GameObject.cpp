@@ -12,7 +12,7 @@ void GameObject::SetTexture(std::string texturePath, sf::IntRect rect)
 		std::cout << "Error loading texture " << texturePath << std::endl;
 	}
 	sprite.setTexture(texture);
-	collider.SetSize(sf::Vector2f {200.f, 200.f});
+	collider.SetSize(sf::Vector2f {20.f, 20.f});
 }
 
 sf::Sprite& GameObject::GetSprite()

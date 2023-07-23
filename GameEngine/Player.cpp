@@ -13,8 +13,8 @@ void Player::Render(sf::RenderWindow& renderWindow)
 {
 	GameObject::Render(renderWindow);
 	//TODO: Make any type of "children" objects and global/local position to move all objects attached?
-	weapon->SetPosition(sprite.getPosition() + weaponOffset);
-	weapon->Render(renderWindow);
+	//weapon->SetPosition(sprite.getPosition() + weaponOffset);
+	//weapon->Render(renderWindow);
 }
 
 void Player::OnEventFired(sf::Keyboard::Key code)
@@ -27,7 +27,7 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 		if (!lastDirectionLeft)
 		{
 			sprite.setScale(1.f,1.f);
-			weapon->GetSprite().setScale(-1.f, 1.f);
+			//weapon->GetSprite().setScale(-1.f, 1.f);
 			lastDirectionLeft = true;
 		}
 	}
@@ -37,7 +37,7 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 		if (lastDirectionLeft)
 		{
 			sprite.setScale(-1.f, 1.f);
-			weapon->GetSprite().setScale(1.f, 1.f);
+			//weapon->GetSprite().setScale(1.f, 1.f);
 			lastDirectionLeft = false;
 		}
 	}
@@ -59,6 +59,7 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 	}
 
 	sprite.setPosition(position);
+	SetPosition(position);
 }
 
 void Player::AssignWeapon(Weapon* weapon)
