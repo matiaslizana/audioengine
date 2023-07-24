@@ -1,22 +1,30 @@
 #pragma once
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+
 #include <iostream>
+#include "Transform.h"
+#include "Component.h"
+#include "GameScript.h"
 
 class GameObject
 {
 private:
-	sf::Texture texture;
-
-protected:
-	sf::Sprite sprite;
+	std::vector<Component*> components;
+	std::vector<GameScript*> scripts;
 
 public:
+	Transform* transform;
+	
 	GameObject();
-	void SetTexture(std::string texturePath, sf::IntRect rect);
-	sf::Sprite& GetSprite();
+
+	template<class T>
+	T* AddComponent()
+	{
+		//TODO: type assert
+		T* c = new T();
+		components.push_back(c);
+		return static_cast<T*>(c);
+	}
+
+	//void AddGameScript();
 	virtual void Render(sf::RenderWindow& renderWindow);
-	void SetPosition(sf::Vector2f position);
-	sf::Vector2f GetPosition();
 };
