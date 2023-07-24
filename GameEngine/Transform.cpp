@@ -1,5 +1,9 @@
 #include "Transform.h"
 
+Transform::Transform() : position {}
+{
+}
+
 void Transform::SetPosition(sf::Vector2f position)
 {
 	this->position = position;

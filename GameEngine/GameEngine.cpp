@@ -10,10 +10,12 @@ void GameEngine::Init()
 	{
 		input.PollEvent(window);
 		window.clear(sf::Color::Black);
-		/*
+
 		for (int i = 0; i < gameObjects.size(); i++)
-			gameObjects[i]->Render(window);
-		*/
+			gameObjects[i]->Process();
+
+		for (int i = 0; i < renderables.size(); i++)
+			renderables[i]->Render(window);
 		window.display();
 	}
 }

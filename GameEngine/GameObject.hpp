@@ -12,18 +12,9 @@ private:
 	std::vector<GameScript*> scripts;
 
 public:
-	Transform* transform;
-	
+	Transform transform;
+
 	GameObject();
-
-	template<class T>
-	T* AddComponent()
-	{
-		//TODO: type assert
-		T* c = new T();
-		components.push_back(c);
-		return static_cast<T*>(c);
-	}
-
-	//void AddGameScript();
+	void Process();
+	void AddComponent(Component* c);
 };

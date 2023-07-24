@@ -14,8 +14,23 @@ private:
 	std::vector<IRenderable*> renderables{};
 
 public:
+	static GameEngine& Instance()
+	{
+		static GameEngine instance;
+		return instance;
+	}
 	GameEngine();
 	void Init();
 	void AddGameObject(GameObject* gameObject);
 	void SubscribeInput(Player* player);
+
+	template<class T>
+	T* AddComponent(GameObject* go)
+	{
+		T* c = new T();
+		if (IRenderable* r = dynamic_cast<IRenderable*>(c))
+			renderables.push_back(c);
+		go->AddComponent(c);
+		return c;
+	}
 };

@@ -6,19 +6,17 @@
 #include "Singleton.h"
 #include "SpriteRenderer.h"
 
-Singleton<GameEngine> gameEngine;
-
 int main()
 {
     //TODO: Move this into scripted data (Lua?)
     GameObject player {};
-    player.transform->SetPosition(sf::Vector2f(400, 300));
-    SpriteRenderer* spriteRenderer = player.AddComponent<SpriteRenderer>();
+    player.transform.SetPosition(sf::Vector2f(400, 300));
+    SpriteRenderer* spriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&player);
     spriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     
     //player.GetSprite().setScale(-1.f, 1.f);
     //player.GetSprite().setOrigin(8, 8);
-    gameEngine.Instance().AddGameObject(&player);
+    GameEngine::Instance().AddGameObject(&player);
     //gameEngine.Instance().SubscribeInput(&player);
 
     //Weapon weapon {};
@@ -27,7 +25,7 @@ int main()
     //player.AssignWeapon(&weapon);
     
     //Bullet: 246, 54, 4, 4  
-    gameEngine.Instance().Init();
+    GameEngine::Instance().Init();
 
     return 0;
 }

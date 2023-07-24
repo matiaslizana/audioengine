@@ -13,3 +13,8 @@ void SpriteRenderer::Render(sf::RenderWindow& renderWindow)
 {
 	renderWindow.draw(sprite);
 }
+
+void SpriteRenderer::SetTransform(Transform* t)
+{
+	sprite.setPosition(t->GetPosition());
+}
