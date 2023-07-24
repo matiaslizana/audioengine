@@ -3,9 +3,10 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Component.h"
+#include "IRenderable.h"
 #include <iostream>
 
-class SpriteRenderer : public Component
+class SpriteRenderer : public Component, public IRenderable
 {
 private:
 	sf::Texture texture;
@@ -13,5 +14,5 @@ private:
 
 public:
 	void SetTexture(std::string texturePath, sf::IntRect rect);
-	virtual void Render(sf::RenderWindow& renderWindow);
+	void Render(sf::RenderWindow& renderWindow) override;
 };

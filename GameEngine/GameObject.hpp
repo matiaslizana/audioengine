@@ -26,5 +26,4 @@ public:
 	}
 
 	//void AddGameScript();
-	virtual void Render(sf::RenderWindow& renderWindow);
 };
