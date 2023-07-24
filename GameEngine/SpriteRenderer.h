@@ -16,4 +16,5 @@ public:
 	void SetTexture(std::string texturePath, sf::IntRect rect);
 	void Render(sf::RenderWindow& renderWindow) override;
 	void SetTransform(Transform* t) override;
+	sf::Sprite* GetSprite();
 };

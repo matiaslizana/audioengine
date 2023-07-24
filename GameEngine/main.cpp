@@ -13,9 +13,9 @@ int main()
     player.transform.SetPosition(sf::Vector2f(400, 300));
     SpriteRenderer* spriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&player);
     spriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
+    spriteRenderer->GetSprite()->setScale(-1.f, 1.f);
+    spriteRenderer->GetSprite()->setOrigin(8, 8);
     
-    //player.GetSprite().setScale(-1.f, 1.f);
-    //player.GetSprite().setOrigin(8, 8);
     GameEngine::Instance().AddGameObject(&player);
     //gameEngine.Instance().SubscribeInput(&player);
 

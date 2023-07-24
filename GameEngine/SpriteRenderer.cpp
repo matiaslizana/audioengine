@@ -18,3 +18,8 @@ void SpriteRenderer::SetTransform(Transform* t)
 {
 	sprite.setPosition(t->GetPosition());
 }
+
+sf::Sprite* SpriteRenderer::GetSprite()
+{
+	return &sprite;
+}
