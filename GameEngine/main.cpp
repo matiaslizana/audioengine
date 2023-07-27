@@ -2,9 +2,14 @@
 #include "Player.hpp"
 #include "GameEngine.h"
 #include "SpriteRenderer.h"
+#include "LuaManager.h"
 
 int main()
 {
+    LuaManager luaManager {};
+    luaManager.Init();
+    luaManager.DoFile("resources/scripts/main.lua");
+
     //TODO: Move this into scripted data (Lua?)
     GameObject playerGameObject {};
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
