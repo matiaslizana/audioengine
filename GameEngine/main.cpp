@@ -1,23 +1,24 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
-#include "Input.h"
-#include "Weapon.h"
 #include "GameEngine.h"
-#include "Singleton.h"
 #include "SpriteRenderer.h"
 
 int main()
 {
     //TODO: Move this into scripted data (Lua?)
-    GameObject player {};
-    player.transform.SetPosition(sf::Vector2f(400, 300));
-    SpriteRenderer* spriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&player);
+    GameObject playerGameObject {};
+    playerGameObject.SetPosition(sf::Vector2f(400, 300));
+
+    SpriteRenderer* spriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&playerGameObject);
     spriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     spriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     spriteRenderer->GetSprite()->setOrigin(8, 8);
     
-    GameEngine::Instance().AddGameObject(&player);
-    //gameEngine.Instance().SubscribeInput(&player);
+    Player* playerGameScript = new Player(&playerGameObject);
+    playerGameObject.AddGameScript(playerGameScript);
+    GameEngine::Instance().SubscribeInput(playerGameScript);
+
+    GameEngine::Instance().AddGameObject(&playerGameObject);
 
     //Weapon weapon {};
     //weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));

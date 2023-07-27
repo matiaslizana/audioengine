@@ -10,19 +10,20 @@ class GameEngine
 private:
 	Input input;
 	sf::RenderWindow window;
-	std::vector<GameObject*> gameObjects{};
-	std::vector<IRenderable*> renderables{};
+	std::vector<GameObject*> gameObjects;
+	std::vector<IRenderable*> renderables;
 
 public:
+	GameEngine();
 	static GameEngine& Instance()
 	{
 		static GameEngine instance;
 		return instance;
 	}
-	GameEngine();
+
 	void Init();
+	void SubscribeInput(IInputReceiver* receiver);
 	void AddGameObject(GameObject* gameObject);
-	void SubscribeInput(Player* player);
 
 	template<class T>
 	T* AddComponent(GameObject* go)

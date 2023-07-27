@@ -1,17 +1,19 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include "Weapon.h"
-#include "Bullet.h"
+#include "IInputReceiver.h"
+#include "GameEngine.h"
+#include "SpriteRenderer.h"
 
-class Player : public GameScript
+class Player : public GameScript, public IInputReceiver
 {
 private:
 	float velocity;
 	bool lastDirectionLeft;
+	SpriteRenderer* spriteRenderer;
 
 public:
-	Player();
-	//TODO: How to bind Keyboard to Player without Keyboard class coupled?
+	Player(GameObject* go);
+
 	void OnEventFired(sf::Keyboard::Key code);
 };

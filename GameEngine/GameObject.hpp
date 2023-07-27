@@ -5,6 +5,8 @@
 #include "Component.h"
 #include "GameScript.h"
 
+class GameScript;
+
 class GameObject
 {
 private:
@@ -15,6 +17,22 @@ public:
 	Transform transform;
 
 	GameObject();
-	void Process();
+
+	void SetPosition(sf::Vector2f position);
+	sf::Vector2f GetPosition();
+
+	template <class T>
+	T* GetComponent()
+	{
+		for (size_t i = 0; i < components.size(); i++)
+		{
+			if (T* c = dynamic_cast<T*>(components[i]))
+				return c;
+		}
+		return nullptr;
+	}
+
+	void Update();
 	void AddComponent(Component* c);
+	void AddGameScript(GameScript* gs);
 };

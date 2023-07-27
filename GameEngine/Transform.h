@@ -3,10 +3,12 @@
 
 class Transform
 {
-public:
+private:
 	sf::Vector2f position;
-	
+
+public:
 	Transform();
+
 	void SetPosition(sf::Vector2f position);
 	sf::Vector2f GetPosition();
 };

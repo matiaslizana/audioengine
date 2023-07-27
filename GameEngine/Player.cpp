@@ -1,41 +1,37 @@
 #include "Player.hpp"
-#include "GameEngine.h"
-#include "Singleton.h"
 
-extern Singleton<GameEngine> gameEngine;
-
-Player::Player() : velocity(0.05f), lastDirectionLeft(false)
+Player::Player(GameObject* go) : GameScript(go), velocity(0.05f), lastDirectionLeft(false)
 {
-
+	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
 void Player::OnEventFired(sf::Keyboard::Key code)
 {
-	//sf::Vector2f position = sprite.getPosition();
+	sf::Vector2f position = gameObject->GetPosition();
 
-	//if (code == sf::Keyboard::Left)
-	//{
-	//	position.x -= velocity;
-	//	if (!lastDirectionLeft)
-	//	{
-	//		sprite.setScale(1.f,1.f);
-	//		lastDirectionLeft = true;
-	//	}
-	//}
-	//if (code == sf::Keyboard::Right)
-	//{
-	//	position.x += velocity;
-	//	if (lastDirectionLeft)
-	//	{
-	//		sprite.setScale(-1.f, 1.f);
-	//		lastDirectionLeft = false;
-	//	}
-	//}
+	if (code == sf::Keyboard::Left)
+	{
+		position.x -= velocity;
+		if (!lastDirectionLeft)
+		{
+			spriteRenderer->GetSprite()->setScale(1.f,1.f);
+			lastDirectionLeft = true;
+		}
+	}
+	if (code == sf::Keyboard::Right)
+	{
+		position.x += velocity;
+		if (lastDirectionLeft)
+		{
+			spriteRenderer->GetSprite()->setScale(-1.f, 1.f);
+			lastDirectionLeft = false;
+		}
+	}
 
-	//if (code == sf::Keyboard::Up)
-	//	position.y -= velocity;
-	//if (code == sf::Keyboard::Down)
-	//	position.y += velocity;
+	if (code == sf::Keyboard::Up)
+		position.y -= velocity;
+	if (code == sf::Keyboard::Down)
+		position.y += velocity;
 	
 	if (code == sf::Keyboard::Space)
 	{
@@ -48,5 +44,5 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 		*/
 	}
 
-	//sprite.setPosition(position);
+	gameObject->SetPosition(position);
 }
