@@ -12,11 +12,13 @@ class GameObject
 private:
 	std::vector<Component*> components;
 	std::vector<GameScript*> scripts;
+	std::vector<GameObject*> children;
+	GameObject* parent;
 
 public:
 	Transform transform;
 
-	GameObject();
+	GameObject(GameObject* parent = nullptr);
 
 	void SetPosition(sf::Vector2f position);
 	sf::Vector2f GetPosition();
@@ -35,4 +37,5 @@ public:
 	void Update();
 	void AddComponent(Component* c);
 	void AddGameScript(GameScript* gs);
+	void AddChildren(GameObject* go);
 };

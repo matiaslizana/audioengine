@@ -9,21 +9,22 @@ int main()
     GameObject playerGameObject {};
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
 
-    SpriteRenderer* spriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&playerGameObject);
-    spriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
-    spriteRenderer->GetSprite()->setScale(-1.f, 1.f);
-    spriteRenderer->GetSprite()->setOrigin(8, 8);
+    SpriteRenderer* playerSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&playerGameObject);
+    playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
+    playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
+    playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     
     Player* playerGameScript = new Player(&playerGameObject);
     playerGameObject.AddGameScript(playerGameScript);
+   
     GameEngine::Instance().SubscribeInput(playerGameScript);
-
     GameEngine::Instance().AddGameObject(&playerGameObject);
 
-    //Weapon weapon {};
-    //weapon.SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
-    //gameEngine.Instance().AddGameObject(&weapon);
-    //player.AssignWeapon(&weapon);
+    GameObject weaponGameObject{&playerGameObject};
+    SpriteRenderer* weaponSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&weaponGameObject);
+    weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
+    
+    GameEngine::Instance().AddGameObject(&weaponGameObject);
     
     //Bullet: 246, 54, 4, 4  
     GameEngine::Instance().Init();
