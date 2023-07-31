@@ -14,6 +14,7 @@ private:
 	std::vector<GameScript*> scripts;
 	std::vector<GameObject*> children;
 	GameObject* parent;
+	Transform localTransform;
 
 public:
 	Transform transform;
@@ -21,6 +22,7 @@ public:
 	GameObject(GameObject* parent = nullptr);
 
 	void SetPosition(sf::Vector2f position);
+	void UpdatePosition();
 	sf::Vector2f GetPosition();
 
 	template <class T>

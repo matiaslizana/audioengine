@@ -1,17 +1,28 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject(GameObject* parent) : transform{}, components{}, scripts{}, parent{parent}
+GameObject::GameObject(GameObject* parent) : transform{}, localTransform{}, components {}, scripts{}, parent{ parent }
 {
 	if (parent != nullptr)
 		parent->AddChildren(this);
 }
 
-void GameObject::SetPosition(sf::Vector2f position)
+//Updates localTransform, transform and children transform
+void GameObject::SetPosition(sf::Vector2f localPosition)
 {
-	transform.SetPosition(position);
-	
+	localTransform.SetPosition(localPosition);
+	UpdatePosition();
+
 	for (int i = 0; i < children.size(); i++)
-		children[i]->SetPosition(position);
+		children[i]->UpdatePosition();	
+}
+
+//Updates transform position from parent
+void GameObject::UpdatePosition()
+{
+	if (parent == nullptr)
+		transform.SetPosition(localTransform.GetPosition());
+	else
+		transform.SetPosition(parent->GetPosition() + localTransform.GetPosition());
 	
 	for (int i = 0; i < components.size(); i++)
 		components[i]->SetTransform(&transform);

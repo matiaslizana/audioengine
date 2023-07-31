@@ -21,6 +21,8 @@ int main()
     GameEngine::Instance().AddGameObject(&playerGameObject);
 
     GameObject weaponGameObject{&playerGameObject};
+    weaponGameObject.SetPosition(sf::Vector2f(0, 0));
+
     SpriteRenderer* weaponSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&weaponGameObject);
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
     
