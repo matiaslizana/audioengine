@@ -2,6 +2,7 @@
 #include "Player.hpp"
 #include "GameEngine.h"
 #include "SpriteRenderer.h"
+#include "Weapon.h"
 
 int main()
 {
@@ -16,7 +17,6 @@ int main()
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     
     Player* playerGameScript = new Player(&playerGameObject);
-    playerGameObject.AddGameScript(playerGameScript);
    
     GameEngine::Instance().SubscribeInput(playerGameScript);
     GameEngine::Instance().AddGameObject(&playerGameObject);
@@ -28,6 +28,8 @@ int main()
     SpriteRenderer* weaponSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&weaponGameObject);
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
     
+    Weapon* weaponGameScript = new Weapon(&weaponGameObject);
+
     GameEngine::Instance().AddGameObject(&weaponGameObject);
     
     //Bullet: 246, 54, 4, 4  

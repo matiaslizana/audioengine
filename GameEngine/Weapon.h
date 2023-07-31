@@ -1,9 +1,14 @@
-//#pragma once
-//#include "GameObject.hpp"
-//#include <SFML/Graphics/Texture.hpp>
-//
-//class Weapon : public GameObject
-//{
-//public:
-//	Weapon();
-//};
+#pragma once
+#include "GameObject.hpp"
+#include "SpriteRenderer.h"
+
+class Weapon : public GameScript
+{
+private:
+	SpriteRenderer* spriteRenderer;
+
+public:
+	Weapon(GameObject* go);
+
+	void Shot();
+};

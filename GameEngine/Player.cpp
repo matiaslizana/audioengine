@@ -3,6 +3,7 @@
 Player::Player(GameObject* go) : GameScript(go), velocity(0.05f), lastDirectionLeft(false)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
+	weapon = gameObject->GetGameScript<Weapon>();
 }
 
 void Player::OnEventFired(sf::Keyboard::Key code)
@@ -35,13 +36,7 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 	
 	if (code == sf::Keyboard::Space)
 	{
-		//QUESTION: Objects need to be created inside the game engine (to keep the reference there)
-		//Do we need to create a templated version for GameObject derived classes?
-		//Or maybe classes should not derive from GameObject, and have like a component based behavior as unity? How can we do that?
-		/*
-		Bullet bullet{ velocity };
-		gameEngine.Instance().AddGameObject(&bullet);
-		*/
+		weapon->Shot();
 	}
 
 	gameObject->SetPosition(position);

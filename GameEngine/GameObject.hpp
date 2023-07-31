@@ -38,6 +38,17 @@ public:
 		return nullptr;
 	}
 
+	template <class T>
+	T* GetGameScript()
+	{
+		for (size_t i = 0; i < scripts.size(); i++)
+		{
+			if (T* c = static_cast<T*>(scripts[i]))
+				return c;
+		}
+		return nullptr;
+	}
+
 	void Update();
 	void AddComponent(Component* c);
 	void AddGameScript(GameScript* gs);
