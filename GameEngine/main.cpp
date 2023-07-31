@@ -6,7 +6,8 @@
 int main()
 {
     //TODO: Move this into scripted data (Lua?)
-    GameObject playerGameObject {};
+    std::string playerName = "Player";
+    GameObject playerGameObject {playerName};
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
 
     SpriteRenderer* playerSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&playerGameObject);
@@ -20,7 +21,8 @@ int main()
     GameEngine::Instance().SubscribeInput(playerGameScript);
     GameEngine::Instance().AddGameObject(&playerGameObject);
 
-    GameObject weaponGameObject{&playerGameObject};
+    std::string weaponName = "Weapon";
+    GameObject weaponGameObject{weaponName, &playerGameObject};
     weaponGameObject.SetPosition(sf::Vector2f(0, 0));
 
     SpriteRenderer* weaponSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&weaponGameObject);

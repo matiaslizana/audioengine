@@ -1,9 +1,19 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject(GameObject* parent) : transform{}, localTransform{}, components {}, scripts{}, parent{ parent }
+GameObject::GameObject(std::string& name, GameObject* parent) : transform {}, localTransform{}, components{}, scripts{}, parent{ parent }, name{ name }
 {
 	if (parent != nullptr)
 		parent->AddChildren(this);
+}
+
+GameObject::~GameObject()
+{
+	//TODO: This is breaking on deleting scripts
+	//for (int i = 0; i < components.size(); i++)
+	//	delete(components[i]);
+
+	//for (int i = 0; i < scripts.size(); i++)
+	//	delete(scripts[i]);
 }
 
 //Updates localTransform, transform and children transform

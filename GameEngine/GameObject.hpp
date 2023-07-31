@@ -15,11 +15,13 @@ private:
 	std::vector<GameObject*> children;
 	GameObject* parent;
 	Transform localTransform;
+	std::string name;
 
 public:
 	Transform transform;
 
-	GameObject(GameObject* parent = nullptr);
+	GameObject(std::string& name, GameObject* parent = nullptr);
+	virtual ~GameObject();
 
 	void SetPosition(sf::Vector2f position);
 	void UpdatePosition();
