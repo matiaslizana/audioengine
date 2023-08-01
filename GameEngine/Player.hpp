@@ -17,5 +17,5 @@ private:
 public:
 	Player(GameObject* go);
 
-	void OnEventFired(sf::Keyboard::Key code);
+	void OnEventFired(const sf::Keyboard::Key& code);
 };

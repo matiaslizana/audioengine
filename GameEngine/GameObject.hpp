@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Component.h"
 #include "GameScript.h"
+#include "IRenderable.h"
 
 class GameScript;
 
@@ -17,15 +18,28 @@ private:
 	Transform localTransform;
 	std::string name;
 
+	void SetTransform();
+
 public:
 	Transform transform;
 
 	GameObject(std::string& name, GameObject* parent = nullptr);
 	virtual ~GameObject();
-
+	
 	void SetPosition(sf::Vector2f position);
-	void UpdatePosition();
 	sf::Vector2f GetPosition();
+
+	//TODO: Check how to keep the entire object in the list but handling moving them if the list grows
+	template<class T>
+	T* AddComponent()
+	{
+		//Keep the whole  
+		T* c = new T();
+		if (IRenderable* r = dynamic_cast<IRenderable*>(c))
+			renderables.push_back(c);
+		AddComponent(c);
+		return c;
+	}
 
 	template <class T>
 	T* GetComponent()

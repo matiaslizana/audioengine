@@ -20,14 +20,14 @@ GameObject::~GameObject()
 void GameObject::SetPosition(sf::Vector2f localPosition)
 {
 	localTransform.SetPosition(localPosition);
-	UpdatePosition();
+	SetTransform();
 
 	for (int i = 0; i < children.size(); i++)
-		children[i]->UpdatePosition();	
+		children[i]->SetTransform();	
 }
 
 //Updates transform position from parent
-void GameObject::UpdatePosition()
+void GameObject::SetTransform()
 {
 	if (parent == nullptr)
 		transform.SetPosition(localTransform.GetPosition());

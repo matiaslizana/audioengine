@@ -3,6 +3,7 @@
 
 class GameObject;
 
+//TODO: GameScript change to component
 class GameScript
 {
 protected:

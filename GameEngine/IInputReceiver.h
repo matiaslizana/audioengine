@@ -4,6 +4,6 @@
 class IInputReceiver
 {
 public:
-	virtual void OnEventFired(sf::Keyboard::Key code) = 0;
+	virtual void OnEventFired(const sf::Keyboard::Key& code) = 0;
 };
 

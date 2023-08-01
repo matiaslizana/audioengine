@@ -6,7 +6,7 @@ Player::Player(GameObject* go) : GameScript(go), velocity(0.05f), lastDirectionL
 	weapon = gameObject->GetGameScript<Weapon>();
 }
 
-void Player::OnEventFired(sf::Keyboard::Key code)
+void Player::OnEventFired(const sf::Keyboard::Key& code)
 {
 	sf::Vector2f position = gameObject->GetPosition();
 

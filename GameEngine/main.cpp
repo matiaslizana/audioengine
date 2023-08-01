@@ -8,14 +8,20 @@ int main()
 {
     //TODO: Move this into scripted data (Lua?)
     std::string playerName = "Player";
+
+    //TODO: Move game object creation to a pool
     GameObject playerGameObject {playerName};
+    //TODO: Pass vector by reference
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
 
+    //TODO: Move that to game object
+    //playerGameObject.AddComponent<SpriteRenderer>()
     SpriteRenderer* playerSpriteRenderer = GameEngine::Instance().AddComponent<SpriteRenderer>(&playerGameObject);
     playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     
+    //TODO: Shared Pointers
     Player* playerGameScript = new Player(&playerGameObject);
    
     GameEngine::Instance().SubscribeInput(playerGameScript);
