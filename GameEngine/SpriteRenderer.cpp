@@ -1,6 +1,6 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer() : texture{}, sprite{}
+SpriteRenderer::SpriteRenderer(GameObject* gameObject) : Component(gameObject), texture{}, sprite{}
 {
 }
 

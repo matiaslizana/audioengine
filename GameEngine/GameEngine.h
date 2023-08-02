@@ -1,9 +1,14 @@
 #pragma once
-#include <vector>
-#include "GameObject.hpp"
-#include "Player.hpp"
+
 #include "Input.h"
+#include <memory>
 #include "IRenderable.h"
+#include "IInputReceiver.h"
+#include <vector>
+#include "SFML/Graphics.hpp"
+#include "GameObject.hpp"
+
+class GameObject;
 
 class GameEngine
 {
@@ -11,7 +16,7 @@ private:
 	Input input;
 	sf::RenderWindow window;
 	std::vector<GameObject*> gameObjects;
-	std::vector<IRenderable*> renderables;
+	std::vector<std::shared_ptr<IRenderable>> renderables;
 
 public:
 	GameEngine();
@@ -24,14 +29,5 @@ public:
 	void Init();
 	void SubscribeInput(IInputReceiver* receiver);
 	void AddGameObject(GameObject* gameObject);
-
-	template<class T>
-	T* AddComponent(GameObject* go)
-	{
-		T* c = new T();
-		if (IRenderable* r = dynamic_cast<IRenderable*>(c))
-			renderables.push_back(c);
-		go->AddComponent(c);
-		return c;
-	}
+	void AddRenderable(std::shared_ptr<IRenderable> renderable);
 };

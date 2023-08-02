@@ -30,3 +30,8 @@ void GameEngine::AddGameObject(GameObject* gameObject)
 {
 	gameObjects.push_back(gameObject);
 }
+
+void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)
+{
+	renderables.push_back(renderable);
+}

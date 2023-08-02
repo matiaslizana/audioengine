@@ -1,18 +1,20 @@
 #pragma once
 
-#include <iostream>
-#include "Transform.h"
+#include <vector>
+#include <memory>
 #include "Component.h"
-#include "GameScript.h"
-#include "IRenderable.h"
+#include "GameObject.hpp"
+#include "Transform.h"
+#include <string>
+#include "GameEngine.h"
 
-class GameScript;
+class Component;
+class GameEngine;
 
 class GameObject
 {
 private:
-	std::vector<Component*> components;
-	std::vector<GameScript*> scripts;
+	std::vector<std::shared_ptr<Component>> components;
 	std::vector<GameObject*> children;
 	GameObject* parent;
 	Transform localTransform;
@@ -31,40 +33,27 @@ public:
 
 	//TODO: Check how to keep the entire object in the list but handling moving them if the list grows
 	template<class T>
-	T* AddComponent()
+	std::shared_ptr<T> AddComponent()
 	{
-		//Keep the whole  
-		T* c = new T();
-		if (IRenderable* r = dynamic_cast<IRenderable*>(c))
-			renderables.push_back(c);
+		std::shared_ptr<T> c = std::make_shared<T>(this);
+		if (std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
+			GameEngine::Instance().AddRenderable(r);
 		AddComponent(c);
 		return c;
 	}
 
 	template <class T>
-	T* GetComponent()
+	std::shared_ptr<T> GetComponent()
 	{
 		for (size_t i = 0; i < components.size(); i++)
 		{
-			if (T* c = dynamic_cast<T*>(components[i]))
-				return c;
-		}
-		return nullptr;
-	}
-
-	template <class T>
-	T* GetGameScript()
-	{
-		for (size_t i = 0; i < scripts.size(); i++)
-		{
-			if (T* c = static_cast<T*>(scripts[i]))
+			if (std::shared_ptr<T> c = std::dynamic_pointer_cast<T>(components[i]))
 				return c;
 		}
 		return nullptr;
 	}
 
 	void Update();
-	void AddComponent(Component* c);
-	void AddGameScript(GameScript* gs);
+	void AddComponent(std::shared_ptr<Component> c);
 	void AddChildren(GameObject* go);
 };

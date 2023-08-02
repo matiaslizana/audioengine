@@ -1,6 +1,6 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject(std::string& name, GameObject* parent) : transform {}, localTransform{}, components{}, scripts{}, parent{ parent }, name{ name }
+GameObject::GameObject(std::string& name, GameObject* parent) : transform {}, localTransform{}, components{}, parent{ parent }, name{ name }
 {
 	if (parent != nullptr)
 		parent->AddChildren(this);
@@ -48,15 +48,10 @@ void GameObject::Update()
 
 }
 
-void GameObject::AddComponent(Component* c)
+void GameObject::AddComponent(std::shared_ptr<Component> c)
 {
 	c->SetTransform(&transform);
 	components.push_back(c);
-}
-
-void GameObject::AddGameScript(GameScript* gs)
-{
-	scripts.push_back(gs);
 }
 
 void GameObject::AddChildren(GameObject* go)

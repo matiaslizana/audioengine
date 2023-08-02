@@ -155,7 +155,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameScript.cpp" />
     <ClCompile Include="IInputReceiver.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -169,7 +168,6 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.hpp" />
-    <ClInclude Include="GameScript.h" />
     <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderable.h" />
