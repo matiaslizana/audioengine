@@ -27,7 +27,7 @@ public:
 	}
 
 	void Init();
-	void SubscribeInput(IInputReceiver* receiver);
+	void SubscribeInput(const std::shared_ptr<IInputReceiver>& receiver);
 	void AddGameObject(GameObject* gameObject);
-	void AddRenderable(std::shared_ptr<IRenderable> renderable);
+	void AddRenderable(const std::shared_ptr<IRenderable>& renderable);
 };

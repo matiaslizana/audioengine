@@ -36,7 +36,7 @@ public:
 	std::shared_ptr<T> AddComponent()
 	{
 		std::shared_ptr<T> c = std::make_shared<T>(this);
-		if (std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
+		if (const std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
 			GameEngine::Instance().AddRenderable(r);
 		AddComponent(c);
 		return c;

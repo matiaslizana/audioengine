@@ -14,12 +14,12 @@ int main()
     GameObject playerGameObject {playerName};
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
 
-    std::shared_ptr<SpriteRenderer> playerSpriteRenderer = playerGameObject.AddComponent<SpriteRenderer>();
+    const std::shared_ptr<SpriteRenderer> playerSpriteRenderer = playerGameObject.AddComponent<SpriteRenderer>();
     playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     
-    Player* playerGameScript = new Player(&playerGameObject);
+    const std::shared_ptr<Player> playerGameScript = playerGameObject.AddComponent<Player>();
    
     GameEngine::Instance().SubscribeInput(playerGameScript);
     GameEngine::Instance().AddGameObject(&playerGameObject);
