@@ -15,6 +15,7 @@ private:
 
 public:
 	Player(GameObject* go);
+	virtual ~Player() = default;
 
-	void OnEventFired(const sf::Keyboard::Key& code);
+	void OnEventFired(const sf::Keyboard::Key& code) override;
 };

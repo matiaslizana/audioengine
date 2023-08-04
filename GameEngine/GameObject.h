@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include "Component.h"
-#include "GameObject.hpp"
 #include "Transform.h"
 #include <string>
 #include "GameEngine.h"
@@ -25,7 +24,7 @@ private:
 
 public:
 	GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent = nullptr);
-	virtual ~GameObject();
+	virtual ~GameObject() = default;
 	
 	void SetPosition(sf::Vector2f position);
 	sf::Vector2f GetPosition();

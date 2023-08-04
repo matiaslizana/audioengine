@@ -1,20 +1,10 @@
-#include "GameObject.hpp"
+#include "GameObject.h"
 
 GameObject::GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent) :
 	components{}, parent{parent}, localTransform{}, name{name}, transform{}
 {
 	if (parent != nullptr)
 		parent->AddChildren(std::shared_ptr<GameObject>(this));
-}
-
-GameObject::~GameObject()
-{
-	//TODO: This is breaking on deleting scripts
-	//for (int i = 0; i < components.size(); i++)
-	//	delete(components[i]);
-
-	//for (int i = 0; i < scripts.size(); i++)
-	//	delete(scripts[i]);
 }
 
 //Updates localTransform, transform and children transform

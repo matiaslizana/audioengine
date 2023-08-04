@@ -26,7 +26,7 @@ void GameEngine::SubscribeInput(const std::shared_ptr<IInputReceiver>& receiver)
 	input.Subscribe(std::bind(&IInputReceiver::OnEventFired, receiver, std::placeholders::_1));
 }
 
-void GameEngine::AddGameObject(GameObject* gameObject)
+void GameEngine::AddGameObject(const std::shared_ptr<GameObject>& gameObject)
 {
 	gameObjects.push_back(gameObject);
 }

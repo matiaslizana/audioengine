@@ -6,7 +6,7 @@
 #include "IInputReceiver.h"
 #include <vector>
 #include "SFML/Graphics.hpp"
-#include "GameObject.hpp"
+#include "GameObject.h"
 
 class GameObject;
 
@@ -15,7 +15,7 @@ class GameEngine
 private:
 	Input input;
 	sf::RenderWindow window;
-	std::vector<GameObject*> gameObjects;
+	std::vector<std::shared_ptr<GameObject>> gameObjects;
 	std::vector<std::shared_ptr<IRenderable>> renderables;
 
 public:
@@ -28,6 +28,6 @@ public:
 
 	void Init();
 	void SubscribeInput(const std::shared_ptr<IInputReceiver>& receiver);
-	void AddGameObject(GameObject* gameObject);
+	void AddGameObject(const std::shared_ptr<GameObject>& gameObject);
 	void AddRenderable(const std::shared_ptr<IRenderable>& renderable);
 };

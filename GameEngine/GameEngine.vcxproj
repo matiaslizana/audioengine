@@ -167,7 +167,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderable.h" />
