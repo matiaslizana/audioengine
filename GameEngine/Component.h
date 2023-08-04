@@ -14,5 +14,5 @@ public:
 	Component(std::shared_ptr<GameObject> gameObject);
 	virtual ~Component() = default;
 
-	virtual void SetTransform(Transform* t) {}
+	virtual void SetTransform(Transform& t) {}
 };

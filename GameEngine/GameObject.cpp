@@ -27,7 +27,7 @@ void GameObject::SetTransform()
 		transform.SetPosition(parent->GetPosition() + localTransform.GetPosition());
 	
 	for (const auto& component : components)
-		component->SetTransform(&transform);
+		component->SetTransform(transform);
 }
 
 sf::Vector2f GameObject::GetPosition()
@@ -42,7 +42,7 @@ void GameObject::Update()
 
 void GameObject::AddComponent(std::shared_ptr<Component> c)
 {
-	c->SetTransform(&transform);
+	c->SetTransform(transform);
 	components.push_back(c);
 }
 

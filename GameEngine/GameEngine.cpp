@@ -21,17 +21,17 @@ void GameEngine::Init()
 	}
 }
 
-void GameEngine::SubscribeInput(const std::shared_ptr<IInputReceiver>& receiver)
+void GameEngine::SubscribeInput(std::shared_ptr<IInputReceiver> receiver)
 {
 	input.Subscribe(std::bind(&IInputReceiver::OnEventFired, receiver, std::placeholders::_1));
 }
 
-void GameEngine::AddGameObject(const std::shared_ptr<GameObject>& gameObject)
+void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject)
 {
 	gameObjects.push_back(gameObject);
 }
 
-void GameEngine::AddRenderable(const std::shared_ptr<IRenderable>& renderable)
+void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)
 {
 	renderables.push_back(renderable);
 }
