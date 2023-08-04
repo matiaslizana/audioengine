@@ -1,9 +1,10 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject(std::string& name, GameObject* parent) : transform {}, localTransform{}, components{}, parent{ parent }, name{ name }
+GameObject::GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent) :
+	components{}, parent{parent}, localTransform{}, name{name}, transform{}
 {
 	if (parent != nullptr)
-		parent->AddChildren(this);
+		parent->AddChildren(std::shared_ptr<GameObject>(this));
 }
 
 GameObject::~GameObject()
@@ -22,8 +23,8 @@ void GameObject::SetPosition(sf::Vector2f localPosition)
 	localTransform.SetPosition(localPosition);
 	SetTransform();
 
-	for (int i = 0; i < children.size(); i++)
-		children[i]->SetTransform();	
+	for (const auto& child : children)
+		child->SetTransform();	
 }
 
 //Updates transform position from parent
@@ -34,8 +35,8 @@ void GameObject::SetTransform()
 	else
 		transform.SetPosition(parent->GetPosition() + localTransform.GetPosition());
 	
-	for (int i = 0; i < components.size(); i++)
-		components[i]->SetTransform(&transform);
+	for (const auto& component : components)
+		component->SetTransform(&transform);
 }
 
 sf::Vector2f GameObject::GetPosition()
@@ -48,13 +49,13 @@ void GameObject::Update()
 
 }
 
-void GameObject::AddComponent(std::shared_ptr<Component> c)
+void GameObject::AddComponent(const std::shared_ptr<Component>& c)
 {
 	c->SetTransform(&transform);
 	components.push_back(c);
 }
 
-void GameObject::AddChildren(GameObject* go)
+void GameObject::AddChildren(const std::shared_ptr<GameObject>& go)
 {
 	children.push_back(go);
 }

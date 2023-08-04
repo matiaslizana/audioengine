@@ -8,10 +8,9 @@
 int main()
 {
     //TODO: Move this into scripted data (Lua?)
-    std::string playerName = "Player";
 
-    //TODO: Move game object creation to a pool
-    GameObject playerGameObject {playerName};
+	//TODO: Move game object creation to a pool
+    GameObject playerGameObject { "Player" };
     playerGameObject.SetPosition(sf::Vector2f(400, 300));
 
     const std::shared_ptr<SpriteRenderer> playerSpriteRenderer = playerGameObject.AddComponent<SpriteRenderer>();
@@ -24,8 +23,7 @@ int main()
     GameEngine::Instance().SubscribeInput(playerGameScript);
     GameEngine::Instance().AddGameObject(&playerGameObject);
 
-    //std::string weaponName = "Weapon";
-    //GameObject weaponGameObject{weaponName, &playerGameObject};
+    //GameObject weaponGameObject{"Weapon", &playerGameObject};
     //weaponGameObject.SetPosition(sf::Vector2f(0, 0));
 
     //SpriteRenderer* weaponSpriteRenderer = weaponGameObject.AddComponent<SpriteRenderer>();

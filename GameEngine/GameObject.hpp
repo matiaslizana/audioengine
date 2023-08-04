@@ -15,17 +15,16 @@ class GameObject
 {
 private:
 	std::vector<std::shared_ptr<Component>> components;
-	std::vector<GameObject*> children;
-	GameObject* parent;
+	std::vector<std::shared_ptr<GameObject>> children;
+	std::shared_ptr<GameObject> parent;
+	Transform transform;
 	Transform localTransform;
 	std::string name;
 
 	void SetTransform();
 
 public:
-	Transform transform;
-
-	GameObject(std::string& name, GameObject* parent = nullptr);
+	GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent = nullptr);
 	virtual ~GameObject();
 	
 	void SetPosition(sf::Vector2f position);
@@ -54,6 +53,6 @@ public:
 	}
 
 	void Update();
-	void AddComponent(std::shared_ptr<Component> c);
-	void AddChildren(GameObject* go);
+	void AddComponent(const std::shared_ptr<Component>& c);
+	void AddChildren(const std::shared_ptr<GameObject>& go);
 };
