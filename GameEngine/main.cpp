@@ -11,21 +11,21 @@ int main()
 	//TODO: Move game object creation to a pool
 
 	//Player
-    const std::shared_ptr<GameObject> playerGameObject = std::make_shared<GameObject>("Player");
+	std::shared_ptr<GameObject> playerGameObject = std::make_shared<GameObject>("Player");
     playerGameObject->SetPosition(sf::Vector2f(400, 300));
 
-    const std::shared_ptr<SpriteRenderer> playerSpriteRenderer = playerGameObject->AddComponent<SpriteRenderer>();
+	std::shared_ptr<SpriteRenderer> playerSpriteRenderer = playerGameObject->AddComponent<SpriteRenderer>();
     playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     
-    const std::shared_ptr<Player> playerGameScript = playerGameObject->AddComponent<Player>();
+    std::shared_ptr<Player> playerGameScript = playerGameObject->AddComponent<Player>();
    
     GameEngine::Instance().SubscribeInput(playerGameScript);
     GameEngine::Instance().AddGameObject(playerGameObject);
 
     //Weapon
-    const std::shared_ptr<GameObject> weaponGameObject = std::make_shared<GameObject>("Weapon", playerGameObject);
+	std::shared_ptr<GameObject> weaponGameObject = std::make_shared<GameObject>("Weapon", playerGameObject);
     weaponGameObject->SetPosition(sf::Vector2f(0, 0));
 
     //const std::shared_ptr<SpriteRenderer> weaponSpriteRenderer = weaponGameObject->AddComponent<SpriteRenderer>();

@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player(GameObject* go) : Component(go), velocity(0.05f), lastDirectionLeft(false)
+Player::Player(std::shared_ptr<GameObject> go) : Component(go), velocity(0.05f), lastDirectionLeft(false)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 	//weapon = gameObject->GetGameScript<Weapon>();

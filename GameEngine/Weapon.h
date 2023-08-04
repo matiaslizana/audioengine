@@ -1,14 +1,14 @@
 #pragma once
-#include "GameObject.hpp"
+#include "GameObject.h"
 #include "SpriteRenderer.h"
 
 class Weapon : public Component
 {
 private:
-	SpriteRenderer* spriteRenderer;
+	std::shared_ptr<SpriteRenderer> spriteRenderer;
 
 public:
-	Weapon(GameObject* go);
+	Weapon(std::shared_ptr<GameObject> go);
 	virtual ~Weapon() = default;
 
 	void Shot();

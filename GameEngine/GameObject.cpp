@@ -1,10 +1,11 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent) :
-	components{}, parent{parent}, localTransform{}, name{name}, transform{}
+GameObject::GameObject(const std::string& name, std::shared_ptr<GameObject> parent) :
+	components{}, children{}, localTransform {}, name{ name }, transform{}
 {
+	this->parent = parent;
 	if (parent != nullptr)
-		parent->AddChildren(std::shared_ptr<GameObject>(this));
+		parent->AddChildren(std::make_shared<GameObject>(*this));
 }
 
 //Updates localTransform, transform and children transform
@@ -39,13 +40,13 @@ void GameObject::Update()
 
 }
 
-void GameObject::AddComponent(const std::shared_ptr<Component>& c)
+void GameObject::AddComponent(std::shared_ptr<Component> c)
 {
 	c->SetTransform(&transform);
 	components.push_back(c);
 }
 
-void GameObject::AddChildren(const std::shared_ptr<GameObject>& go)
+void GameObject::AddChildren(std::shared_ptr<GameObject> go)
 {
 	children.push_back(go);
 }

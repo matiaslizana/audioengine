@@ -23,7 +23,7 @@ private:
 	void SetTransform();
 
 public:
-	GameObject(const std::string& name, const std::shared_ptr<GameObject>& parent = nullptr);
+	GameObject(const std::string& name, std::shared_ptr<GameObject> parent = nullptr);
 	virtual ~GameObject() = default;
 	
 	void SetPosition(sf::Vector2f position);
@@ -33,7 +33,7 @@ public:
 	template<class T>
 	std::shared_ptr<T> AddComponent()
 	{
-		std::shared_ptr<T> c = std::make_shared<T>(this);
+		std::shared_ptr<T> c = std::make_shared<T>(std::make_shared<GameObject>(*this));
 		if (const std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
 			GameEngine::Instance().AddRenderable(r);
 		AddComponent(c);
@@ -52,6 +52,6 @@ public:
 	}
 
 	void Update();
-	void AddComponent(const std::shared_ptr<Component>& c);
-	void AddChildren(const std::shared_ptr<GameObject>& go);
+	void AddComponent(std::shared_ptr<Component> c);
+	void AddChildren(std::shared_ptr<GameObject> go);
 };

@@ -15,7 +15,7 @@ private:
 	sf::Sprite sprite;
 
 public:
-	SpriteRenderer(GameObject* gameObject);
+	SpriteRenderer(const std::shared_ptr<GameObject>& gameObject);
 
 	void SetTexture(std::string texturePath, sf::IntRect rect);
 	void SetTransform(Transform* t) override;

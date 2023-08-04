@@ -1,6 +1,6 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(GameObject* gameObject) : Component(gameObject), texture{}, sprite{}
+SpriteRenderer::SpriteRenderer(const std::shared_ptr<GameObject>& gameObject) : Component(gameObject), texture{}, sprite{}
 {
 }
 
