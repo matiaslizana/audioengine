@@ -6,6 +6,7 @@ GameObject::GameObject(const std::string& name, std::shared_ptr<GameObject> pare
 	this->parent = parent;
 	if (parent != nullptr)
 		parent->AddChildren(std::make_shared<GameObject>(*this));
+	GameEngine::Instance().AddGameObject(std::make_shared<GameObject>(*this));
 }
 
 //Updates localTransform, transform and children transform
