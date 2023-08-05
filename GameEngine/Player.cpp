@@ -1,33 +1,21 @@
 #include "Player.hpp"
-#include "GameEngine.h"
-#include "Singleton.h"
 
-extern Singleton<GameEngine> gameEngine;
-
-Player::Player() : velocity(0.05f), weapon{}, weaponOffset(0,0), lastDirectionLeft(false)
+Player::Player(GameObject* go) : Component(go), velocity(0.05f), lastDirectionLeft(false)
 {
-
+	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
+	//weapon = gameObject->GetGameScript<Weapon>();
 }
 
-void Player::Render(sf::RenderWindow& renderWindow)
+void Player::OnEventFired(const sf::Keyboard::Key& code)
 {
-	GameObject::Render(renderWindow);
-	//TODO: Make any type of "children" objects and global/local position to move all objects attached?
-	//weapon->SetPosition(sprite.getPosition() + weaponOffset);
-	//weapon->Render(renderWindow);
-}
-
-void Player::OnEventFired(sf::Keyboard::Key code)
-{
-	sf::Vector2f position = sprite.getPosition();
+	sf::Vector2f position = gameObject->GetPosition();
 
 	if (code == sf::Keyboard::Left)
 	{
 		position.x -= velocity;
 		if (!lastDirectionLeft)
 		{
-			sprite.setScale(1.f,1.f);
-			//weapon->GetSprite().setScale(-1.f, 1.f);
+			spriteRenderer->GetSprite()->setScale(1.f,1.f);
 			lastDirectionLeft = true;
 		}
 	}
@@ -36,8 +24,8 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 		position.x += velocity;
 		if (lastDirectionLeft)
 		{
-			sprite.setScale(-1.f, 1.f);
-			//weapon->GetSprite().setScale(1.f, 1.f);
+
+			spriteRenderer->GetSprite()->setScale(-1.f, 1.f);
 			lastDirectionLeft = false;
 		}
 	}
@@ -49,20 +37,8 @@ void Player::OnEventFired(sf::Keyboard::Key code)
 	
 	if (code == sf::Keyboard::Space)
 	{
-		//QUESTION: Objects need to be created inside the game engine (to keep the reference there)
-		//Do we need to create a templated version for GameObject derived classes?
-		//Or maybe classes should not derive from GameObject, and have like a component based behavior as unity? How can we do that?
-		/*
-		Bullet bullet{ velocity };
-		gameEngine.Instance().AddGameObject(&bullet);
-		*/
+		//weapon->Shot();
 	}
 
-	sprite.setPosition(position);
-	SetPosition(position);
-}
-
-void Player::AssignWeapon(Weapon* weapon)
-{
-	this->weapon = weapon;
+	gameObject->SetPosition(position);
 }

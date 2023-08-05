@@ -1,48 +1,64 @@
 #include "GameObject.hpp"
 
-GameObject::GameObject() : texture{}, sprite{}
+GameObject::GameObject(std::string& name, GameObject* parent) : transform {}, localTransform{}, components{}, parent{ parent }, name{ name }
 {
-
+	if (parent != nullptr)
+		parent->AddChildren(this);
 }
 
-void GameObject::SetTexture(std::string texturePath, sf::IntRect rect)
+GameObject::~GameObject()
 {
-	if (!texture.loadFromFile(texturePath, rect))
-	{
-		std::cout << "Error loading texture " << texturePath << std::endl;
-	}
-	sprite.setTexture(texture);
-	collider.SetSize(sf::Vector2f {20.f, 20.f});
+	//TODO: This is breaking on deleting scripts
+	//for (int i = 0; i < components.size(); i++)
+	//	delete(components[i]);
+
+	//for (int i = 0; i < scripts.size(); i++)
+	//	delete(scripts[i]);
 }
 
-sf::Sprite& GameObject::GetSprite()
+//Updates localTransform, transform and children transform
+void GameObject::SetPosition(sf::Vector2f localPosition)
 {
-	return sprite;
-}
+	localTransform.SetPosition(localPosition);
+	SetTransform();
 
-void GameObject::Render(sf::RenderWindow& renderWindow)
-{
-	renderWindow.draw(sprite);
+	for (int i = 0; i < children.size(); i++)
+		children[i]->SetTransform();	
+
 #if(_DEBUG)
 	BoxCollider::DrawBoxCollider(collider, renderWindow);
 #endif
 }
 
-void GameObject::SetPosition(sf::Vector2f position)
+//Updates transform position from parent
+void GameObject::SetTransform()
 {
-	sprite.setPosition(position);
-	collider.SetPosition(position);
+	if (parent == nullptr)
+		transform.SetPosition(localTransform.GetPosition());
+	else
+		transform.SetPosition(parent->GetPosition() + localTransform.GetPosition());
+	
+	for (int i = 0; i < components.size(); i++)
+		components[i]->SetTransform(&transform);
 }
 
 sf::Vector2f GameObject::GetPosition()
 {
-	return sprite.getPosition();
+	return transform.GetPosition();
 }
 
-//DISCUSS: What is better? Maybe that's only for convenience functions, but not for basic ones
-/*
-void Render(GameObject& gameObject, sf::RenderWindow& renderWindow)
+void GameObject::Update()
 {
-	renderWindow.draw(gameObject.GetSprite());
+
 }
-*/
+
+void GameObject::AddComponent(std::shared_ptr<Component> c)
+{
+	c->SetTransform(&transform);
+	components.push_back(c);
+}
+
+void GameObject::AddChildren(GameObject* go)
+{
+	children.push_back(go);
+}

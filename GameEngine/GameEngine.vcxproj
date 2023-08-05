@@ -154,24 +154,33 @@
     <ClCompile Include="Bounds.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="IInputReceiver.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bounds.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

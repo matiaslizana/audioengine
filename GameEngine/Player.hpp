@@ -1,21 +1,20 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "GameObject.hpp"
-#include "Weapon.h"
-#include "Bullet.h"
 
-class Player : public GameObject
+#include "Component.h"
+#include "IInputReceiver.h"
+#include "SpriteRenderer.h"
+//#include "Weapon.h"
+
+class Player : public Component, public IInputReceiver
 {
 private:
 	float velocity;
-	Weapon* weapon;
-	sf::Vector2f weaponOffset;
 	bool lastDirectionLeft;
+	std::shared_ptr<SpriteRenderer> spriteRenderer;
+	//Weapon* weapon;
 
 public:
-	Player();
-	//TODO: How to bind Keyboard to Player without Keyboard class coupled?
-	void OnEventFired(sf::Keyboard::Key code);
-	void AssignWeapon(Weapon* weapon);
-	void Render(sf::RenderWindow& renderWindow) override;
+	Player(GameObject* go);
+
+	void OnEventFired(const sf::Keyboard::Key& code);
 };

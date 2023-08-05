@@ -3,7 +3,7 @@
 constexpr int WINDOW_HEIGHT = 600;
 constexpr int WINDOW_WIDTH = 800;
 
-GameEngine::GameEngine() : input{}, window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Alien Game")
+GameEngine::GameEngine() : input{}, window(sf::VideoMode(800, 600), "Alien Game"), gameObjects{}, renderables{}
 {
 }
 
@@ -15,7 +15,7 @@ void GameEngine::Init()
 		window.clear(sf::Color::Black);
 
 		for (int i = 0; i < gameObjects.size(); i++)
-			gameObjects[i]->Render(window);
+			gameObjects[i]->Update();
 
 		{
 			sf::Vertex line[] =
@@ -35,8 +35,16 @@ void GameEngine::Init()
 			window.draw(line, 2, sf::Lines);
 		}
 
+		for (int i = 0; i < renderables.size(); i++)
+			renderables[i]->Render(window);
+
 		window.display();
 	}
+}
+
+void GameEngine::SubscribeInput(const std::shared_ptr<IInputReceiver>& receiver)
+{
+	input.Subscribe(std::bind(&IInputReceiver::OnEventFired, receiver, std::placeholders::_1));
 }
 
 void GameEngine::AddGameObject(GameObject* gameObject)
@@ -44,7 +52,7 @@ void GameEngine::AddGameObject(GameObject* gameObject)
 	gameObjects.push_back(gameObject);
 }
 
-void GameEngine::SubscribeInput(Player* player)
+void GameEngine::AddRenderable(const std::shared_ptr<IRenderable>& renderable)
 {
-	input.Subscribe(std::bind(&Player::OnEventFired, player, std::placeholders::_1));
+	renderables.push_back(renderable);
 }
