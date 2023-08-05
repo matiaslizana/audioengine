@@ -1,6 +1,6 @@
 #include "SpriteRenderer.h"
 
-SpriteRenderer::SpriteRenderer(GameObject* gameObject) : Component(gameObject), texture{}, sprite{}
+SpriteRenderer::SpriteRenderer(std::shared_ptr<GameObject> gameObject) : Component(gameObject), texture{}, sprite{}
 {
 }
 
@@ -13,9 +13,9 @@ void SpriteRenderer::SetTexture(std::string texturePath, sf::IntRect rect)
 	sprite.setTexture(texture);
 }
 
-void SpriteRenderer::SetTransform(Transform* t)
+void SpriteRenderer::SetTransform(Transform& t)
 {
-	sprite.setPosition(t->GetPosition());
+	sprite.setPosition(t.GetPosition());
 }
 
 sf::Sprite* SpriteRenderer::GetSprite()

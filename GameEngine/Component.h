@@ -1,17 +1,18 @@
 #pragma once
 
 #include "Transform.h"
-#include "GameObject.hpp"
+#include "GameObject.h"
 
 class GameObject;
 
 class Component
 {
 protected:
-	GameObject* gameObject;
+	std::shared_ptr<GameObject> gameObject;
 
 public:
-	Component(GameObject* gameObject);
+	Component(std::shared_ptr<GameObject> gameObject);
+	virtual ~Component() = default;
 
-	virtual void SetTransform(Transform* t) {}
+	virtual void SetTransform(Transform& t) {}
 };

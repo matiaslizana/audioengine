@@ -14,7 +14,8 @@ private:
 	//Weapon* weapon;
 
 public:
-	Player(GameObject* go);
+	Player(std::shared_ptr<GameObject> go);
+	virtual ~Player() = default;
 
-	void OnEventFired(const sf::Keyboard::Key& code);
+	void OnEventFired(const sf::Keyboard::Key& code) override;
 };

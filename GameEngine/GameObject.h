@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include "Component.h"
-#include "GameObject.hpp"
 #include "Transform.h"
 #include <string>
 #include "GameEngine.h"
@@ -15,18 +14,17 @@ class GameObject
 {
 private:
 	std::vector<std::shared_ptr<Component>> components;
-	std::vector<GameObject*> children;
-	GameObject* parent;
+	std::vector<std::shared_ptr<GameObject>> children;
+	std::shared_ptr<GameObject> parent;
+	Transform transform;
 	Transform localTransform;
 	std::string name;
 
 	void SetTransform();
 
 public:
-	Transform transform;
-
-	GameObject(std::string& name, GameObject* parent = nullptr);
-	virtual ~GameObject();
+	GameObject(const std::string& name, std::shared_ptr<GameObject> parent = nullptr);
+	virtual ~GameObject() = default;
 	
 	void SetPosition(sf::Vector2f position);
 	sf::Vector2f GetPosition();
@@ -35,7 +33,7 @@ public:
 	template<class T>
 	std::shared_ptr<T> AddComponent()
 	{
-		std::shared_ptr<T> c = std::make_shared<T>(this);
+		std::shared_ptr<T> c = std::make_shared<T>(std::make_shared<GameObject>(*this));
 		if (const std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
 			GameEngine::Instance().AddRenderable(r);
 		AddComponent(c);
@@ -55,5 +53,5 @@ public:
 
 	void Update();
 	void AddComponent(std::shared_ptr<Component> c);
-	void AddChildren(GameObject* go);
+	void AddChildren(std::shared_ptr<GameObject> go);
 };

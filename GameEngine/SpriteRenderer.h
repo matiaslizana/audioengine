@@ -15,10 +15,10 @@ private:
 	sf::Sprite sprite;
 
 public:
-	SpriteRenderer(GameObject* gameObject);
+	SpriteRenderer(std::shared_ptr<GameObject> gameObject);
 
 	void SetTexture(std::string texturePath, sf::IntRect rect);
-	void SetTransform(Transform* t) override;
+	void SetTransform(Transform& t) override;
 	sf::Sprite* GetSprite();
 
 	void Render(sf::RenderWindow& renderWindow) override;
