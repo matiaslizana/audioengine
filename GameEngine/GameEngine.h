@@ -28,6 +28,6 @@ public:
 
 	void Init();
 	void SubscribeInput(std::shared_ptr<IInputReceiver> receiver);
-	void AddGameObject(std::shared_ptr<GameObject> gameObject);
+	void AddGameObject(std::shared_ptr<GameObject> gameObject, std::shared_ptr<GameObject> parent = nullptr);
 	void AddRenderable(std::shared_ptr<IRenderable> renderable);
 };
