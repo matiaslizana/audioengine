@@ -41,13 +41,23 @@ public:
 	}
 
 	template <class T>
-	std::shared_ptr<T> GetComponent()
+	std::shared_ptr<T> GetComponent(bool searchOnchildren = false)
 	{
-		for (size_t i = 0; i < components.size(); i++)
+		for (const auto& component : components)
 		{
-			if (std::shared_ptr<T> c = std::dynamic_pointer_cast<T>(components[i]))
+			if (std::shared_ptr<T> c = std::dynamic_pointer_cast<T>(component))
 				return c;
 		}
+
+		if (!searchOnchildren)
+			return nullptr;
+
+		for (const auto& child : children)
+		{
+			if (std::shared_ptr<T> c = std::dynamic_pointer_cast<T>(child->GetComponent<T>()))
+				return c;
+		}
+
 		return nullptr;
 	}
 

@@ -3,7 +3,7 @@
 Player::Player(std::shared_ptr<GameObject> go) : Component(go), velocity(0.05f), lastDirectionLeft(false)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
-	//weapon = gameObject->GetGameScript<Weapon>();
+	weapon = gameObject->GetComponent<Weapon>(true);
 }
 
 void Player::OnEventFired(const sf::Keyboard::Key& code)
@@ -36,7 +36,7 @@ void Player::OnEventFired(const sf::Keyboard::Key& code)
 	
 	if (code == sf::Keyboard::Space)
 	{
-		//weapon->Shot();
+		weapon->Shot();
 	}
 
 	gameObject->SetPosition(position);

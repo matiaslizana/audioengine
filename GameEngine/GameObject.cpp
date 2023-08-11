@@ -35,7 +35,8 @@ sf::Vector2f GameObject::GetPosition()
 
 void GameObject::Update()
 {
-
+	for (const auto& component : components)
+		component->Update();
 }
 
 void GameObject::AddComponent(std::shared_ptr<Component> c)

@@ -1,12 +1,16 @@
-//#pragma once
-//#include <SFML/Graphics.hpp>
-//#include "GameObject.hpp"
-//
-//class Bullet : public GameObject
-//{
-//private:
-//	float velocity;
-//public:
-//	Bullet(float velocity);
-//	void Render(sf::RenderWindow& renderWindow) override;
-//};
+#pragma once
+#include "GameObject.h"
+#include "Component.h"
+#include "SpriteRenderer.h"
+
+class Bullet : public Component
+{
+private:
+	float velocity;
+	std::shared_ptr<SpriteRenderer> spriteRenderer;
+
+public:
+	Bullet(std::shared_ptr<GameObject> go, float velocity);
+
+	void Update() override;
+};

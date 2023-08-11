@@ -21,8 +21,8 @@ int main()
     playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
-    std::shared_ptr<Player> playerGameScript = GameObject::AddComponent<Player>(playerGameObject);
-    GameEngine::Instance().SubscribeInput(playerGameScript);
+    std::shared_ptr<Player> playerComponent = GameObject::AddComponent<Player>(playerGameObject);
+    GameEngine::Instance().SubscribeInput(playerComponent);
 
     //Weapon
 	std::shared_ptr<GameObject> weaponGameObject = std::make_shared<GameObject>("Weapon");
@@ -32,7 +32,7 @@ int main()
 
 	std::shared_ptr<SpriteRenderer> weaponSpriteRenderer = GameObject::AddComponent<SpriteRenderer>(weaponGameObject);
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
-	std::shared_ptr<Weapon> weaponGameScript = GameObject::AddComponent<Weapon>(weaponGameObject);
+	std::shared_ptr<Weapon> weaponComponent = GameObject::AddComponent<Weapon>(weaponGameObject);
 
     //Bullet: 246, 54, 4, 4  
     GameEngine::Instance().Init();

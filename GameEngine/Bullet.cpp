@@ -1,13 +1,13 @@
-//#include "Bullet.h"
-//
-//Bullet::Bullet(float velocity) : velocity(velocity)
-//{
-//}
-//
-//void Bullet::Render(sf::RenderWindow& renderWindow)
-//{
-//	GameObject::Render(renderWindow);
-//	sf::Vector2f position = GetPosition();
-//	position.x -= velocity;
-//	SetPosition(position);
-//}
+#include "Bullet.h"
+
+Bullet::Bullet(std::shared_ptr<GameObject> go, float velocity) : Component(go), velocity(velocity)
+{
+	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
+}
+
+void Bullet::Update()
+{
+	sf::Vector2f position = gameObject->GetPosition();
+	position.x -= velocity;
+	gameObject->SetPosition(position);
+}

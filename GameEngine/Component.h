@@ -15,4 +15,5 @@ public:
 	virtual ~Component() = default;
 
 	virtual void SetTransform(Transform& t) {}
+	virtual void Update() {}
 };
