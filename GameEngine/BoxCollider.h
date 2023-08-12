@@ -1,21 +1,27 @@
 #pragma once
+#include <memory>
+
 #include "Bounds.h"
 #include "SFML/Graphics.hpp"
+#include "Component.h"
+#include "GameObject.h"
 
-class BoxCollider
+class BoxCollider : public Component
 {
 public:
-	BoxCollider() : boundingBox() {}
-	BoxCollider(Bounds b) : boundingBox(b) {}
-	BoxCollider(int x, int y, int xExtend, int yExtend) : boundingBox(Vector{ x,y }, Vector{ xExtend, yExtend }) {}
+	BoxCollider(std::shared_ptr<GameObject> gObj) : Component(gObj), boundingBox() {}
+	BoxCollider(Bounds b, std::shared_ptr<GameObject> gObj) : Component(gObj), boundingBox(b) {}
+	BoxCollider(int x, int y, int xExtend, int yExtend, std::shared_ptr<GameObject> gObj) : boundingBox(Vector{ x,y }, Vector{ xExtend, yExtend }), Component(gObj) {}
+
 	Bounds GetBounds();
 	void SetPosition(sf::Vector2f position);
 	void SetSize(sf::Vector2f size);
-	bool Collides(const BoxCollider& col);
+	bool CollidesWith(BoxCollider& col);
+	void UpdatePosition();
 	static void DrawBoxCollider(BoxCollider& boxCollider, sf::RenderWindow& renderWindow);
+	bool Collision = false;
 
 private:
 	Bounds boundingBox;
 };
-
 

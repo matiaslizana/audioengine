@@ -1,5 +1,6 @@
 ﻿  Bounds.cpp
+  Vector.cpp
   test_Bounds.cpp
+  test_Vector.cpp
   Generating Code...
-  LINK : C:\Users\Ctron\dev\engine\x64\Debug\GameEngine_Tests.exe not found or not built by the last incremental link; performing full link
   GameEngine_Tests.vcxproj -> C:\Users\Ctron\dev\engine\x64\Debug\GameEngine_Tests.exe

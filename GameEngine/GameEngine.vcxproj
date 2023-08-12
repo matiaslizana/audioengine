@@ -160,6 +160,7 @@
     <ClCompile Include="IInputReceiver.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Vector.h" />

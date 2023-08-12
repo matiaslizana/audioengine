@@ -1,12 +1,19 @@
 #include "Bounds.h"
 
-bool Bounds::Intersects(const Bounds& otherBounds)
+bool Bounds::Intersects(Bounds& otherBounds)
 {
-    return
-        ( maxPosition.x >= otherBounds.minPosition.x  )             &&  // x1Max >= x2Min
-        ( otherBounds.maxPosition.x >= otherBounds.minPosition.x)   &&  // x2Max >= x1Min
-        ( maxPosition.y > otherBounds.minPosition.y)                &&  // y1Max >= y2Min
-        ( otherBounds.maxPosition.y >= minPosition.y);                  // y2Max >= y1Min
+    Vector OwnMin = GetMinPosition();
+    Vector OwnMax = GetMaxPostition();
+    Vector OtherMin = otherBounds.GetMinPosition();
+    Vector OtherMax = otherBounds.GetMaxPostition();
+
+    bool collision = 
+        ( OwnMax.x   >= OtherMin.x) &&  // x1Max >= x2Min
+        ( OtherMax.x >= OwnMin.x)   &&  // x2Max >= x1Min
+        ( OwnMax.y   >= OtherMin.y) &&  // y1Max >= y2Min
+        ( OtherMax.y >= OwnMin.y);                  // y2Max >= y1Min
+
+    return collision;
 }
 
 void Bounds::SetPosition(const Vector& position)

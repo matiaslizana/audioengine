@@ -17,6 +17,16 @@ void BoxCollider::SetSize(sf::Vector2f size)
 	boundingBox.SetExtends(v);
 }
 
+bool BoxCollider::CollidesWith(BoxCollider& col)
+{
+	return boundingBox.Intersects(col.boundingBox);
+}
+
+void BoxCollider::UpdatePosition()
+{
+	SetPosition(gameObject->GetPosition());
+}
+
 void BoxCollider::DrawBoxCollider(BoxCollider& boxCollider, sf::RenderWindow& renderWindow)
 {
 	Bounds bounds = boxCollider.GetBounds();
@@ -32,7 +42,11 @@ void BoxCollider::DrawBoxCollider(BoxCollider& boxCollider, sf::RenderWindow& re
 	rect.setPosition(position);
 	rect.setSize(size);
 
-	rect.setOutlineColor(sf::Color(0, 255, 0));
+	if (boxCollider.Collision)
+		rect.setOutlineColor(sf::Color(255, 0, 0));
+	else
+		rect.setOutlineColor(sf::Color(0, 255, 0));
+
 	rect.setOutlineThickness(1);
 	rect.setFillColor(sf::Color(0, 0, 0, 0));
 	renderWindow.draw(rect);

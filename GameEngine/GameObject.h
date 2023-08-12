@@ -30,6 +30,8 @@ public:
 	sf::Vector2f GetPosition();
 
 	//TODO: Check how to keep the entire object in the list but handling moving them if the list grows
+	
+	// Chris comment: we end up with an issue here where we cant call constructors other than the default for component.
 	template<class T>
 	static std::shared_ptr<T> AddComponent(std::shared_ptr<GameObject> gameObject)
 	{

@@ -1,9 +1,7 @@
 #include "GameEngine.h"
 #include "BoxCollider.h"
-constexpr int WINDOW_HEIGHT = 600;
-constexpr int WINDOW_WIDTH = 800;
 
-GameEngine::GameEngine() : input{}, window(sf::VideoMode(800, 600), "Alien Game"), gameObjects{}, renderables{}
+GameEngine::GameEngine() : input{}, window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Alien Game"), gameObjects{}, renderables{}
 {
 }
 
@@ -17,23 +15,13 @@ void GameEngine::Init()
 		for (int i = 0; i < gameObjects.size(); i++)
 			gameObjects[i]->Update();
 
-		{
-			sf::Vertex line[] =
-			{
-				sf::Vertex(sf::Vector2f(0, WINDOW_HEIGHT / 2)),
-				sf::Vertex(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT / 2))
-			};
-			window.draw(line, 2, sf::Lines);
-		}
-		
-		{
-			sf::Vertex line[] =
-			{
-				sf::Vertex(sf::Vector2f(WINDOW_WIDTH / 2, 0)),
-				sf::Vertex(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT))
-			};
-			window.draw(line, 2, sf::Lines);
-		}
+		PhysicsSystem.Update();
+
+		// DEBUG DRAWING 
+#if _DEBUG
+		PhysicsSystem.DebugDraw(window);
+#endif
+		// END DEBUG DRAWING
 
 		for (int i = 0; i < renderables.size(); i++)
 			renderables[i]->Render(window);

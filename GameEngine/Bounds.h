@@ -12,7 +12,7 @@ public:
 	
 	}
 
-	bool Intersects(const Bounds& otherBounds);
+	bool Intersects(Bounds& otherBounds);
 	void SetPosition(const Vector& position);
 	void SetExtends(const Vector& size);
 	Vector GetCenter();

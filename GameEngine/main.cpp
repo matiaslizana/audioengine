@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "GameObject.h"
 #include "Weapon.h"
+#include "BoxCollider.h"
 
 int main()
 {
@@ -23,6 +24,11 @@ int main()
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
     std::shared_ptr<Player> playerGameScript = GameObject::AddComponent<Player>(playerGameObject);
     GameEngine::Instance().SubscribeInput(playerGameScript);
+    
+    // Player Collider
+    std::shared_ptr <BoxCollider > PlayerBoxCollider = GameObject::AddComponent<BoxCollider> (playerGameObject);
+    PlayerBoxCollider->SetSize(sf::Vector2f(40, 40));
+    GameEngine::Instance().PhysicsSystem.AddBoxCollider(PlayerBoxCollider);
 
     //Weapon
 	std::shared_ptr<GameObject> weaponGameObject = std::make_shared<GameObject>("Weapon");
@@ -33,6 +39,24 @@ int main()
 	std::shared_ptr<SpriteRenderer> weaponSpriteRenderer = GameObject::AddComponent<SpriteRenderer>(weaponGameObject);
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
 	std::shared_ptr<Weapon> weaponGameScript = GameObject::AddComponent<Weapon>(weaponGameObject);
+
+
+    // collider wall Left
+	std::shared_ptr<GameObject> WallLeftGameObject = std::make_shared<GameObject>("WallColliderLEFT");
+    WallLeftGameObject->SetPosition(sf::Vector2f(50, WINDOW_HEIGHT / 2));
+    std::shared_ptr <BoxCollider > WallLeftBoxCollider = GameObject::AddComponent<BoxCollider> (WallLeftGameObject);
+    GameEngine::Instance().AddGameObject(WallLeftGameObject);
+    WallLeftBoxCollider->SetSize(sf::Vector2f(50, WINDOW_HEIGHT - 40));
+    GameEngine::Instance().PhysicsSystem.AddBoxCollider(WallLeftBoxCollider);
+    
+    // Collider Wall Right
+	std::shared_ptr<GameObject> WallRightGameObject = std::make_shared<GameObject>("WallColliderRIGHT");
+    WallRightGameObject->SetPosition(sf::Vector2f(WINDOW_WIDTH - 50, WINDOW_HEIGHT / 2));
+    std::shared_ptr <BoxCollider > WallRightBoxCollider = GameObject::AddComponent<BoxCollider> (WallRightGameObject);
+    GameEngine::Instance().AddGameObject(WallLeftGameObject);
+    WallRightBoxCollider->SetSize(sf::Vector2f(50, WINDOW_HEIGHT - 40));
+    GameEngine::Instance().PhysicsSystem.AddBoxCollider(WallRightBoxCollider);
+
 
     //Bullet: 246, 54, 4, 4  
     GameEngine::Instance().Init();

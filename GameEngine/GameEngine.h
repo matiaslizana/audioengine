@@ -2,11 +2,15 @@
 
 #include "Input.h"
 #include <memory>
+#include "PhysicsSystem.h"
 #include "IRenderable.h"
 #include "IInputReceiver.h"
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
+
+constexpr int WINDOW_HEIGHT = 600;
+constexpr int WINDOW_WIDTH = 800;
 
 class GameObject;
 
@@ -25,6 +29,7 @@ public:
 		static GameEngine instance;
 		return instance;
 	}
+	PhysicsSystem PhysicsSystem {};
 
 	void Init();
 	void SubscribeInput(std::shared_ptr<IInputReceiver> receiver);
