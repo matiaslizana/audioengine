@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(std::shared_ptr<GameObject> go, float velocity) : Component(go), velocity(velocity)
+Bullet::Bullet(std::shared_ptr<GameObject> go) : Component(go), velocity(0.0001f)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }

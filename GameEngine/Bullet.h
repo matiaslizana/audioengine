@@ -10,7 +10,7 @@ private:
 	std::shared_ptr<SpriteRenderer> spriteRenderer;
 
 public:
-	Bullet(std::shared_ptr<GameObject> go, float velocity);
+	Bullet(std::shared_ptr<GameObject> go);
 
 	void Update() override;
 };

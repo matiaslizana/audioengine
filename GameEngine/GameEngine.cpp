@@ -34,6 +34,11 @@ void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject, std::shar
 		parent->AddChildren(gameObject);
 }
 
+void GameEngine::DestroyGameObject(std::shared_ptr<GameObject> gameObject)
+{
+	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+}
+
 void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)
 {
 	renderables.push_back(renderable);

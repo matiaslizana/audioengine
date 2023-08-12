@@ -1,9 +1,14 @@
 #include "Player.hpp"
 
-Player::Player(std::shared_ptr<GameObject> go) : Component(go), velocity(0.05f), lastDirectionLeft(false)
+Player::Player(std::shared_ptr<GameObject> go) : Component(go), velocity(0.05f), lastDirectionLeft(false), lastShotTime(0.f)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 	weapon = gameObject->GetComponent<Weapon>(true);
+}
+
+void Player::Update()
+{
+	lastShotTime++;
 }
 
 void Player::OnEventFired(const sf::Keyboard::Key& code)
@@ -34,8 +39,9 @@ void Player::OnEventFired(const sf::Keyboard::Key& code)
 	if (code == sf::Keyboard::Down)
 		position.y += velocity;
 	
-	if (code == sf::Keyboard::Space)
+	if (code == sf::Keyboard::Space && lastShotTime > 1000)
 	{
+		lastShotTime = 0;
 		weapon->Shot();
 	}
 
