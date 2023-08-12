@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(std::shared_ptr<GameObject> go) : Component(go), velocity(0.0001f)
+Bullet::Bullet(std::shared_ptr<GameObject> go) : Component(go), velocity(0.1f)
 {
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
@@ -8,6 +8,6 @@ Bullet::Bullet(std::shared_ptr<GameObject> go) : Component(go), velocity(0.0001f
 void Bullet::Update()
 {
 	sf::Vector2f position = gameObject->GetPosition();
-	position.x -= velocity;
+	position.x+= velocity;
 	gameObject->SetPosition(position);
 }
