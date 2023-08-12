@@ -1,14 +1,18 @@
 #pragma once
 
 #include "Component.h"
-#include "IRenderable.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/Graphics/Texture.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 #include "Transform.h"
-#include <iostream>
+#include "GameObject.h"
+#include <memory>
+#include <string>
 
-class SpriteRenderer : public Component, public IRenderable
+class GameObject;
+class Component;
+
+class SpriteRenderer : public Component
 {
 private:
 	sf::Texture texture;
@@ -21,5 +25,5 @@ public:
 	void SetTransform(Transform& t) override;
 	sf::Sprite* GetSprite();
 
-	void Render(sf::RenderWindow& renderWindow) override;
+	void Render(sf::RenderWindow& renderWindow) const;
 };

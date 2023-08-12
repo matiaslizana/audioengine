@@ -1,6 +1,6 @@
 #include "GameEngine.h"
 
-GameEngine::GameEngine() : input{}, window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Alien Game"), gameObjects{}, renderables{}
+GameEngine::GameEngine() : input{}, window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Alien Game"), spriteRendererPool(20), gameObjects{}, renderables{}
 {
 }
 
@@ -37,11 +37,14 @@ void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject, std::shar
 void GameEngine::DestroyGameObject(std::shared_ptr<GameObject> gameObject)
 {
 	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
-	renderables.erase(std::remove(renderables.begin(), renderables.end(), gameObject->GetComponent<IRenderable>()), renderables.end());
+	renderables.erase(std::remove(renderables.begin(), renderables.end(), gameObject->GetComponent<SpriteRenderer>()), renderables.end());
 	std::cout << gameObject->GetName() << " destroyed" << std::endl;
 }
 
-void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)
+std::shared_ptr<SpriteRenderer> GameEngine::AddSpriteRenderer(std::shared_ptr<GameObject> gameObject)
 {
-	renderables.push_back(renderable);
+	std::shared_ptr<SpriteRenderer> renderer = spriteRendererPool.Get();
+	renderables.push_back(renderer);
+	gameObject->AddComponent(renderer);
+	return renderer;
 }

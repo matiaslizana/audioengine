@@ -77,9 +77,6 @@
     <ClInclude Include="Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IInputReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>

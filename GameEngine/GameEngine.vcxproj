@@ -171,7 +171,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />

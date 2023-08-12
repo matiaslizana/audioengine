@@ -7,7 +7,6 @@
 #include <string>
 #include "GameEngine.h"
 
-class Component;
 class GameEngine;
 
 class GameObject
@@ -35,8 +34,6 @@ public:
 	static std::shared_ptr<T> AddComponent(std::shared_ptr<GameObject> gameObject)
 	{
 		std::shared_ptr<T> c = std::make_shared<T>(gameObject);
-		if (const std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
-			GameEngine::Instance().AddRenderable(r);
 		gameObject->AddComponent(c);
 		return c;
 	}

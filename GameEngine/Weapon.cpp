@@ -5,7 +5,7 @@ Weapon::Weapon(std::shared_ptr<GameObject> go) : Component(go)
 	spriteRenderer = gameObject->GetComponent<SpriteRenderer>();
 }
 
-void Weapon::Shot()
+void Weapon::Shot() const
 {
 	std::shared_ptr<GameObject> bulletGameObject = std::make_shared<GameObject>("Bullet");
 	GameEngine::Instance().AddGameObject(bulletGameObject);
@@ -15,7 +15,7 @@ void Weapon::Shot()
 	weaponPosition.y += 3.0f;
 	bulletGameObject->SetPosition(weaponPosition);
 
-	std::shared_ptr<SpriteRenderer> bulletSpriteRenderer = GameObject::AddComponent<SpriteRenderer>(bulletGameObject);
+	std::shared_ptr<SpriteRenderer> bulletSpriteRenderer = GameEngine::Instance().AddSpriteRenderer(bulletGameObject);
 	bulletSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(246, 54, 4, 4));
 	bulletSpriteRenderer->GetSprite()->setOrigin(2, 2);
 

@@ -23,7 +23,7 @@ sf::Sprite* SpriteRenderer::GetSprite()
 	return &sprite;
 }
 
-void SpriteRenderer::Render(sf::RenderWindow& renderWindow)
+void SpriteRenderer::Render(sf::RenderWindow& renderWindow) const
 {
 	renderWindow.draw(sprite);
 }

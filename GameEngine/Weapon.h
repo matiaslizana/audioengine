@@ -12,5 +12,5 @@ public:
 	Weapon(std::shared_ptr<GameObject> go);
 	virtual ~Weapon() = default;
 
-	void Shot();
+	void Shot() const;
 };

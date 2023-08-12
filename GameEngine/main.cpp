@@ -1,4 +1,3 @@
-#include <string>
 #include "GameEngine.h"
 #include "SpriteRenderer.h"
 #include <memory>
@@ -17,7 +16,7 @@ int main()
 
     playerGameObject->SetPosition(sf::Vector2f(400, 300));
 
-	std::shared_ptr<SpriteRenderer> playerSpriteRenderer = GameObject::AddComponent<SpriteRenderer>(playerGameObject);
+	std::shared_ptr<SpriteRenderer> playerSpriteRenderer = GameEngine::Instance().AddSpriteRenderer(playerGameObject);
     playerSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(64, 112, 16, 16));
     playerSpriteRenderer->GetSprite()->setScale(-1.f, 1.f);
     playerSpriteRenderer->GetSprite()->setOrigin(8, 8);
@@ -29,7 +28,7 @@ int main()
 
     weaponGameObject->SetPosition(sf::Vector2f(0, 0));
 
-	std::shared_ptr<SpriteRenderer> weaponSpriteRenderer = GameObject::AddComponent<SpriteRenderer>(weaponGameObject);
+	std::shared_ptr<SpriteRenderer> weaponSpriteRenderer = GameEngine::Instance().AddSpriteRenderer(weaponGameObject);
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
 	std::shared_ptr<Weapon> weaponComponent = GameObject::AddComponent<Weapon>(weaponGameObject);
 
