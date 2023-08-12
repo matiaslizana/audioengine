@@ -33,6 +33,7 @@ int main()
     weaponSpriteRenderer->SetTexture("resources/assets.png", sf::IntRect(152, 102, 13, 8));
 	std::shared_ptr<Weapon> weaponComponent = GameObject::AddComponent<Weapon>(weaponGameObject);
 
+    //TODO: Need to add Player component after Weapon component so it has a dependency on it
     std::shared_ptr<Player> playerComponent = GameObject::AddComponent<Player>(playerGameObject);
     GameEngine::Instance().SubscribeInput(playerComponent);
 

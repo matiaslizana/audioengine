@@ -1,6 +1,6 @@
 #include "GameEngine.h"
 
-GameEngine::GameEngine() : input{}, window(sf::VideoMode(800, 600), "Alien Game"), gameObjects{}, renderables{}
+GameEngine::GameEngine() : input{}, window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Alien Game"), gameObjects{}, renderables{}
 {
 }
 
@@ -37,6 +37,8 @@ void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject, std::shar
 void GameEngine::DestroyGameObject(std::shared_ptr<GameObject> gameObject)
 {
 	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), gameObject), gameObjects.end());
+	renderables.erase(std::remove(renderables.begin(), renderables.end(), gameObject->GetComponent<IRenderable>()), renderables.end());
+	std::cout << gameObject->GetName() << " destroyed" << std::endl;
 }
 
 void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)

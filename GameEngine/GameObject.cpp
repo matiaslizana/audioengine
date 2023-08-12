@@ -6,6 +6,17 @@ GameObject::GameObject(const std::string& name) :
 
 }
 
+GameObject::~GameObject()
+{
+	components.clear();
+	children.clear();
+}
+
+std::string& GameObject::GetName()
+{
+	return name;
+}
+
 //Updates localTransform, transform and children transform
 void GameObject::SetPosition(sf::Vector2f localPosition)
 {

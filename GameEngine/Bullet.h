@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "SpriteRenderer.h"
+#include "GameConfig.h"
 
 class Bullet : public Component
 {

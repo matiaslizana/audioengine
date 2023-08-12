@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="GameConfig.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IInputReceiver.h" />

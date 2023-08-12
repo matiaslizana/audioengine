@@ -7,6 +7,8 @@
 #include <vector>
 #include "SFML/Graphics.hpp"
 #include "GameObject.h"
+#include "GameConfig.h"
+#include <iostream>
 
 class GameObject;
 

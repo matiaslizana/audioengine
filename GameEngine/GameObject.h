@@ -24,8 +24,9 @@ private:
 
 public:
 	GameObject(const std::string& name);
-	virtual ~GameObject() = default;
-	
+	virtual ~GameObject();
+
+	std::string& GetName();
 	void SetPosition(sf::Vector2f position);
 	sf::Vector2f GetPosition();
 
