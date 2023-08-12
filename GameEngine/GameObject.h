@@ -23,7 +23,7 @@ private:
 	void SetTransform();
 
 public:
-	GameObject(const std::string& name, std::shared_ptr<GameObject> parent = nullptr);
+	GameObject(const std::string& name);
 	virtual ~GameObject() = default;
 	
 	void SetPosition(sf::Vector2f position);
@@ -31,12 +31,12 @@ public:
 
 	//TODO: Check how to keep the entire object in the list but handling moving them if the list grows
 	template<class T>
-	std::shared_ptr<T> AddComponent()
+	static std::shared_ptr<T> AddComponent(std::shared_ptr<GameObject> gameObject)
 	{
-		std::shared_ptr<T> c = std::make_shared<T>(std::make_shared<GameObject>(*this));
+		std::shared_ptr<T> c = std::make_shared<T>(gameObject);
 		if (const std::shared_ptr<IRenderable> r = std::dynamic_pointer_cast<IRenderable>(c))
 			GameEngine::Instance().AddRenderable(r);
-		AddComponent(c);
+		gameObject->AddComponent(c);
 		return c;
 	}
 
@@ -54,4 +54,5 @@ public:
 	void Update();
 	void AddComponent(std::shared_ptr<Component> c);
 	void AddChildren(std::shared_ptr<GameObject> go);
+	void SetParent(std::shared_ptr<GameObject> parent);
 };

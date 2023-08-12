@@ -47,9 +47,12 @@ void GameEngine::SubscribeInput(std::shared_ptr<IInputReceiver> receiver)
 	input.Subscribe(std::bind(&IInputReceiver::OnEventFired, receiver, std::placeholders::_1));
 }
 
-void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject)
+void GameEngine::AddGameObject(std::shared_ptr<GameObject> gameObject, std::shared_ptr<GameObject> parent)
 {
 	gameObjects.push_back(gameObject);
+	gameObject->SetParent(parent);
+	if (parent != nullptr)
+		parent->AddChildren(gameObject);
 }
 
 void GameEngine::AddRenderable(std::shared_ptr<IRenderable> renderable)
